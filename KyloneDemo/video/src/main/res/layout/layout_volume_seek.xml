@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="20px"
+    android:paddingRight="20px" >
+
+    <com.kylone.view.ImageView
+        android:layout_width="28px"
+        android:layout_height="34px"
+        android:layout_marginRight="10px"
+        android:focusable="false"
+        android:src="@mipmap/ic_volume" />
+
+    <com.kylone.view.SeekBar
+        android:id="@+id/volume_seek"
+        android:layout_width="384px"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:maxHeight="3px"
+        android:minHeight="3px"
+        android:paddingLeft="15px"
+        android:paddingRight="15px"
+        android:progressDrawable="@drawable/bg_sel_vol_seek" />
+
+</com.kylone.view.LinearLayout>

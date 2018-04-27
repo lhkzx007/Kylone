@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kylone.view.View
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_centerVertical="true"
+        android:background="#a0000000" />
+    <com.kylone.view.RelativeLayout
+        android:id="@+id/menu_controller_border"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:background="@mipmap/ic_menu_focus"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </com.kylone.view.RelativeLayout>
+
+
+    <com.kylone.view.HorizontalScrollView
+        android:id="@+id/menu_controller_h_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="140px"
+        android:layout_marginLeft="10px"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/menu_controller_right"
+        android:focusable="false"
+        android:scrollbars="none">
+
+        <com.kylone.view..LinearLayout
+            android:id="@+id/menu_controller_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:focusable="false"
+            android:orientation="horizontal" />
+    </com.kylone.view.HorizontalScrollView>
+
+    <LinearLayout
+        android:id="@+id/menu_controller_right"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_menu_wheel">
+        <com.kylone.view..ImageView
+            android:id="@+id/menu_controller_arrow"
+            android:layout_width="11px"
+            android:layout_height="27px"
+            android:focusable="false"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:src="@mipmap/navigation_arrow" />
+
+        <com.kylone.player.view.SimpleWheelLayout
+            android:id="@+id/menu_controller_wheel"
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:orientation="vertical">
+
+        </com.kylone.player.view.SimpleWheelLayout>
+    </LinearLayout>
+
+
+</com.kylone.view.RelativeLayout>

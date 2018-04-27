@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_controller_item_decode_set">视频解码</string>
+    <string name="menu_controller_item_favroite_set">视频收藏</string>
+    <string name="menu_controller_item_feedback_set">问题反馈</string>
+    <string name="menu_controller_item_live_favroite_set">看单收藏</string>
+    <string name="menu_controller_item_livetalk_set">弹幕开关</string>
+    <string name="menu_controller_item_music_set">歌单添加</string>
+    <string name="menu_controller_item_platform_set">视频来源</string>
+    <string name="menu_controller_item_play_mode">播放模式</string>
+    <string name="menu_controller_item_quality_set">视频质量</string>
+    <string name="menu_controller_item_rate_set">快进设置</string>
+    <string name="menu_controller_item_scalesize_set">画面比例</string>
+    <string name="menu_controller_item_source_set">节目选源</string>
+    <string name="menu_controller_item_subtitle_set">字幕设置</string>
+    <string name="menu_controller_item_time_shift_set">选源</string>
+    <string name="menu_controller_item_volume_set">音量调节</string>
+    <string name="menu_controller_item_yuyue_set">视频预约</string>
+
+
+    <color name="seekbar_bg_color">#99ffffff</color>
+    <color name="seekbar_pro_color">#ff00ff00</color>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home_2"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_activity_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.kylone.view.RecyclerView
+            android:id="@+id/home_list"
+            android:layout_width="640px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:paddingTop="50px" />
+
+        <com.kylone.view.ImageView
+            android:id="@+id/home_image"
+            android:layout_width="640px"
+            android:layout_height="wrap_content"
+            android:paddingRight="30px"
+            android:src="@drawable/home_image" />
+    </LinearLayout>
+</com.kylone.view.LinearLayout>

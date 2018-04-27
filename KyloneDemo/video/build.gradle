@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+def configInfo = rootProject.ext.android
+android {
+    compileSdkVersion configInfo.compileSdkVersion
+    buildToolsVersion configInfo.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion configInfo.minSdkVersion
+        targetSdkVersion configInfo.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-v4:23.1.0'
+    compile project(':shcapi')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:percent:25.3.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+}

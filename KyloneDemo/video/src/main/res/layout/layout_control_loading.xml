@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kylone.view.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kylone.view.ImageView
+        android:src="@mipmap/bg_loading"
+        android:id="@+id/loading_img_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <com.kylone.view.RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20px"
+        >
+
+        <com.kylone.view.LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16px"
+            android:layout_above="@+id/loading_tv_speed"
+            android:orientation="horizontal">
+
+            <com.kylone.view.TextView
+                android:id="@+id/loading_tv_name_t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="即将播放"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textSize="26px" />
+
+            <com.kylone.view.TextView
+                android:id="@+id/loading_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27px"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textSize="26px" />
+        </com.kylone.view.LinearLayout>
+        <com.kylone.view.TextView
+            android:id="@+id/loading_tv_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/loading_l_root"
+            android:layout_marginBottom="10px"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="20px" />
+
+        <com.kylone.view.RelativeLayout
+            android:id="@+id/loading_l_root"
+            android:layout_centerHorizontal="true"
+            android:layout_width="66px"
+            android:layout_height="66px"
+            android:layout_alignParentBottom="true">
+            <com.kylone.view.ImageView
+                android:id="@+id/loading_img_load"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/lo_fold"
+                />
+
+            <!--<ImageView-->
+                <!--android:id="@+id/loading_img_run"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:src="@drawable/loadingprogress" -->
+                <!--/>-->
+        </com.kylone.view.RelativeLayout>
+        <!--<com.kylone.view.TextView-->
+            <!--android:id="@+id/loading_tv_source"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="43px"-->
+            <!--android:singleLine="true"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textSize="12px" />-->
+    </com.kylone.view.RelativeLayout>
+</com.kylone.view.FrameLayout>
