@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/activity_title"
+        layout="@layout/layout_activity_title" />
+
+    <com.kylone.view.TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40px"
+        android:text="@string/room_server"
+        android:textColor="#ffffff"
+        android:textSize="40px"
+        android:textStyle="bold" />
+
+    <com.kylone.view.RecyclerView
+        android:id="@+id/room_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="60px"
+        android:paddingRight="45px"
+        android:paddingTop="35px" />
+
+</LinearLayout>

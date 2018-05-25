@@ -202,9 +202,8 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
             mMediaPlayer.setOnInfoListener(this);
             mMediaPlayer.setOnSeekCompleteListener(this);
             mMediaPlayer.setOnBufferingUpdateListener(this);
-            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "reconnect", 1);
-            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "min-frames", 100);
-            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 100 * 1024);
+            setOption();
+
 
             //开启硬解码
 //            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
@@ -219,6 +218,17 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
             isNeedOpen = false;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setOption() {
+        if (mMediaPlayer!=null){
+
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "reconnect", 1);
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "min-frames", 100);
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 100 * 1024);
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5);
+
         }
     }
 

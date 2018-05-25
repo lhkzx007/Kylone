@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="seek_bg" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:progressDrawable">@drawable/seek_bar_bg</item>
+        <item name="android:thumb">@drawable/seek_btn</item>
+        <item name="android:maxHeight">34dp</item>
+        <item name="android:minHeight">34dp</item>
+    </style>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220px"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <com.kylone.view.ImageView
+        android:id="@+id/item_image"
+        android:layout_width="match_parent"
+        android:layout_height="170px"
+        android:scaleType="fitXY" />
+
+    <com.kylone.view.TextView
+        android:id="@+id/item_title"
+        android:layout_width="match_parent"
+        android:layout_height="45px"
+        android:background="#104E8B"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="26px" />
+</com.kylone.view.LinearLayout>

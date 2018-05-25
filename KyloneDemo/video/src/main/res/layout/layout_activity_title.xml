@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_title"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="30px"
-    android:orientation="horizontal"
-    android:paddingLeft="30px"
-    android:paddingRight="30px">
+    android:layout_height="60px"
+    android:paddingLeft="60px"
+    android:paddingRight="60px">
 
-    <com.kylone.view.ImageView
-        android:id="@+id/title_icon"
-        android:layout_width="120px"
-        android:layout_height="80px"
-        android:src="@mipmap/icon_kylone" />
 
     <com.kylone.view.TextView
-        android:id="@+id/title_title"
-        android:layout_width="0px"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
-    <com.kylone.view.LinearLayout
+        android:id="@+id/title_wifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_above="@+id/title_line"
+        android:layout_alignParentLeft="true"
+        android:textColor="@android:color/white"
+        android:textSize="20px" />
 
-        <com.kylone.view.TextView
-            android:id="@+id/title_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="38px"
-            android:textStyle="bold" />
 
-        <com.kylone.view.TextView
-            android:id="@+id/title_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="20px" />
-    </com.kylone.view.LinearLayout>
+    <com.kylone.view.TextView
+        android:id="@+id/title_time"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/title_line"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="38px" />
 
-</com.kylone.view.LinearLayout>
+    <com.kylone.view.TextView
+        android:id="@+id/title_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/title_line"
+        android:layout_alignParentRight="true"
+        android:textColor="@android:color/white"
+        android:textSize="20px" />
+
+    <com.kylone.view.View
+        android:id="@+id/title_line"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10px"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_title_line" />
+
+</com.kylone.view.RelativeLayout>

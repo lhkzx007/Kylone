@@ -2,6 +2,7 @@ package com.kylone.view;
 
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup.LayoutParams;
@@ -32,6 +33,14 @@ public class TextView extends android.widget.TextView {
         if (Build.VERSION.SDK_INT > 15) {
             setLineSpacing(getLineSpacingExtra(), getLineSpacingMultiplier());
         }
+    }
+
+    @Override
+    public boolean isFocused() {
+        if (getEllipsize() == TextUtils.TruncateAt.MARQUEE){
+            return true;
+        }
+        return super.isFocused();
     }
 
     @Override

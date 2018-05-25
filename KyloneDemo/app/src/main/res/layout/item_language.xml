@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.kylone.view.ImageView
+        android:id="@+id/item_image"
+        android:scaleType="fitXY"
+        android:layout_width="76px"
+        android:layout_height="50px" />
+
+    <com.kylone.view.TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5px"
+        android:text="china"
+        android:textColor="#ffffff"
+        android:textSize="14px" />
+</LinearLayout>

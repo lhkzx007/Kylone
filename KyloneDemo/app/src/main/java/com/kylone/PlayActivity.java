@@ -47,9 +47,10 @@ public class PlayActivity extends BaseActivity {
             }
         });
         Bundle arge = new Bundle();
-        arge.putString("url", getIntent().getStringExtra("url"));
+//        arge.putString("url", getIntent().getStringExtra("url"));
+        arge.putString("url", "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         arge.putString("title", getIntent().getStringExtra("txt"));
-        vod.changArguments(getIntent().getExtras());
+        vod.changArguments(arge);
 
 
     }

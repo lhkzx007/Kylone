@@ -45,7 +45,8 @@ public class ListActivity extends BaseActivity {
         initView();
         initAdapter();
         initListener();
-        initDate();
+        test();
+//        initDate();
     }
 
     private void initView() {
@@ -54,15 +55,8 @@ public class ListActivity extends BaseActivity {
     }
 
     private void initAdapter() {
-        itemR.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                outRect.bottom = ScreenParameter.getFitSize(10);
-            }
-        });
         itemR.setLayoutManager(new LinearLayoutManager(this));
         adapterItem = new CommonAdapter(R.layout.list_item, itemR);
-        adapterItem.setWeenRecyclerView(itemR);
         adapterItem.openSingleSelect();
         adapterItem.setSelected(0);
         itemR.setAdapter(adapterItem);
@@ -71,13 +65,14 @@ public class ListActivity extends BaseActivity {
         contentR.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                outRect.right = ScreenParameter.getFitWidth(14);
-                outRect.bottom = ScreenParameter.getFitHeight(18);
+                outRect.left = ScreenParameter.getFitWidth(7);
+                outRect.right = ScreenParameter.getFitWidth(7);
+                outRect.top = ScreenParameter.getFitHeight(9);
+                outRect.bottom = ScreenParameter.getFitHeight(9);
             }
         });
         contentR.setLayoutManager(new GridLayoutManager(this, 5));
-        adapterFilm = new CommonAdapter(R.layout.item_film, itemR);
-        adapterFilm.setWeenRecyclerView(contentR);
+        adapterFilm = new CommonAdapter(R.layout.item_film, contentR);
         contentR.setAdapter(adapterFilm);
 
     }
@@ -96,14 +91,14 @@ public class ListActivity extends BaseActivity {
                             HandlerUtils.runUITask(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(ListActivity.this,"No data , Exit the page after 3 seconds. ",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ListActivity.this, "No data , Exit the page after 3 seconds. ", Toast.LENGTH_LONG).show();
                                     HandlerUtils.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             finish();
 
                                         }
-                                    },3000);
+                                    }, 3000);
                                 }
                             });
                             return;
@@ -151,10 +146,10 @@ public class ListActivity extends BaseActivity {
 //                                    LogUtil.i("--" + index);
                                     if (TextUtils.equals(vvkey, "logo")) {
                                         contextInfo.setImage(vvvalue);
-                                    }else if (TextUtils.equals(vvkey, "src")){
+                                    } else if (TextUtils.equals(vvkey, "src")) {
                                         keyCommon.append("|url");
                                         valueCommon.append("|").append(vvvalue);
-                                    }else if (TextUtils.equals(vvkey,"txt")){
+                                    } else if (TextUtils.equals(vvkey, "txt")) {
                                         keyCommon.append("|title");
                                         valueCommon.append("|").append(vvvalue);
                                     }
@@ -217,136 +212,138 @@ public class ListActivity extends BaseActivity {
 //        arge.putString("url","http://str.kylone.blue:4750/2007/0/base/stream.ts");
 
 //        http://cms.kylone.blue/movie/1/doublesniper.mp4
-        String films = "{\n" +
-                "  \"item\": [\n" +
-                "    {\n" +
-                "      \"title\": \"头号玩家\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\n" +
-                "\"key\":\"url|title\",\n" +
-                "\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"湮灭\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\",\n" +
-                "\"key\":\"url|title\",\n" +
-                "\"value\":\"http://str.kylone.blue:4750/2007/0/base/stream.ts|湮灭\"" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"起跑线\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\",\n" +
-                "\"key\":\"url|title\",\n" +
-                "\"value\":\"http://cms.kylone.blue/movie/1/doublesniper.mp4|起跑线\"" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"环太平洋：雷霆再起\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"狂暴巨兽\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"唐人街探案2\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"头号玩家\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"湮灭\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"起跑线\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"环太平洋：雷霆再起\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"狂暴巨兽\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"唐人街探案2\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"头号玩家\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"湮灭\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"起跑线\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"环太平洋：雷霆再起\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"狂暴巨兽\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"唐人街探案2\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"头号玩家\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"湮灭\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"起跑线\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"环太平洋：雷霆再起\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"狂暴巨兽\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"title\": \"唐人街探案2\",\n" +
-                "      \"action\": \"kylone.intent.action.Player\",\n" +
-                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";
+//        String films = "{\n" +
+//                "  \"item\": [\n" +
+//                "    {\n" +
+//                "      \"title\": \"头号玩家\",\n" +
+//                "      \"action\": \"kylone.intent.action.Detail\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\n" +
+//                "\"key\":\"url|title\",\n" +
+//                "\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"湮灭\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\",\n" +
+//                "\"key\":\"url|title\",\n" +
+//                "\"value\":\"http://str.kylone.blue:4750/2007/0/base/stream.ts|湮灭\"" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"起跑线\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\",\n" +
+//                "\"key\":\"url|title\",\n" +
+//                "\"value\":\"http://cms.kylone.blue/movie/1/doublesniper.mp4|起跑线\"" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"环太平洋：雷霆再起\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"狂暴巨兽\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"唐人街探案2\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"头号玩家\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"湮灭\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"起跑线\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"环太平洋：雷霆再起\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"狂暴巨兽\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"唐人街探案2\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"头号玩家\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"湮灭\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"起跑线\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"环太平洋：雷霆再起\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"狂暴巨兽\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"唐人街探案2\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"头号玩家\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"湮灭\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"起跑线\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"环太平洋：雷霆再起\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2512933684.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"狂暴巨兽\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2516079193.webp\"\n" +
+//                "    },\n" +
+//                "    {\n" +
+//                "      \"title\": \"唐人街探案2\",\n" +
+//                "      \"action\": \"kylone.intent.action.Player\",\n" +
+//                "      \"image\": \"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511355624.webp\"\n" +
+//                "    }\n" +
+//                "  ]\n" +
+//                "}";
+
+        String films = "{\"item\":[{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"湮灭\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2007/0/base/stream.ts|湮灭\"},{\"title\":\"起跑线\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\",\"key\":\"url|title\",\"value\":\"http://cms.kylone.blue/movie/1/doublesniper.mp4|起跑线\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"}]}";
         adapterFilm.setData(CommonInfo.parseInfo(films));
     }
 }

@@ -4,8 +4,7 @@
     <item android:state_focused="true" android:drawable="@drawable/bg_sel"/>
     <item>
         <shape>
-            <corners android:radius="5dp" />
-            <solid android:color="#3000" />
+            <solid android:color="#0000" />
         </shape>
     </item>
 </selector>

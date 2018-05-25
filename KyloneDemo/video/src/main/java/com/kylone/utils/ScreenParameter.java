@@ -101,12 +101,16 @@ public class ScreenParameter {
                     if (isVertical) {
                         sRatioX = Math.min(getScreenWidth(), getScreenHeight()) / sDefaultHeight;
                         sRatioY = Math.max(getScreenWidth(), getScreenHeight()) / sDefaultWidth;
-                        sRadtio = sRatioX;
+                        sRadtio = sRatioY;
                     } else {
                         sRatioX = Math.max(getScreenWidth(), getScreenHeight()) / sDefaultWidth;
                         sRatioY = Math.min(getScreenWidth(), getScreenHeight()) / sDefaultHeight;
-                        sRadtio = sRatioY;
                     }
+                    sRadtio = Math.min(sRatioX, sRatioY);
+                    LogUtil.i("getScreenWidth() : " + getScreenWidth());
+                    LogUtil.i("getScreenHeight() : " + getScreenHeight());
+                    LogUtil.i(" sRadtio : " + sRadtio);
+                    LogUtil.i(sRatioX + " ----- " + sRatioY);
                 }
             }
         }

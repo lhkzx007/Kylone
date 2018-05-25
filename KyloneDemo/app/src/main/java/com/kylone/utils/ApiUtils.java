@@ -1,7 +1,12 @@
 package com.kylone.utils;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 
+import com.kylone.WelcomeActivity;
+import com.kylone.base.ComponentContext;
 import com.kylone.shcapi.shApiMain;
 
 /**
@@ -52,8 +57,11 @@ public class ApiUtils {
                         setBannerText();
                     } else if (msg.equals(SHC_MESSAGE_RESTART)) {
                         LogUtil.v(TAG, "app-restart requested by server\n");
+                        restartApp();
                     } else if (msg.equals(SHC_MESSAGE_SUSPEND)) {
                         LogUtil.v(TAG, "suspending or quit requested by server\n");
+                        //重启
+                        restartApp();
                     } else if (msg.equals(SHC_MESSAGE_REBOOTSYSTEM)) {
                         LogUtil.v(TAG, "system-reboot requested by server\n");
                     } else if (msg.equals(SHC_MESSAGE_FWUPDATE)) {
@@ -64,6 +72,14 @@ public class ApiUtils {
                 }
             }, 50);
         }
+
+        public void restartApp() {
+            Intent intent = new Intent(ComponentContext.getContext(), WelcomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ComponentContext.getContext().startActivity(intent);
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+
 
         // Progress callback
         @Override

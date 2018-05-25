@@ -16,28 +16,23 @@ import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.kylone.player.MainVideoView;
 import com.kylone.player.callback.ControlListener;
-import com.kylone.player.callback.MenuControl;
+import com.kylone.player.callback.IPlayerControlCallback;
 import com.kylone.player.callback.SettingInfo;
-import com.kylone.player.view.VodLoadingView;
 import com.kylone.utils.ExtraUitls;
 import com.kylone.utils.LogUtil;
 import com.kylone.utils.MediaPerference;
-import com.kylone.utils.MediaResourceHelper;
 import com.kylone.utils.SpeedChangedReceiver;
 import com.kylone.video.IPlayer;
-import com.kylone.video.R;
 import com.kylone.video.VideoUrl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 
-public class VodControllerManager extends ControllerManager implements MenuControl, SpeedChangedReceiver.CallBack, IPlayer.OnErrorListener, IPlayer.OnCompletionListener, IPlayer.OnInfoListener,
-        IPlayer.OnPreparedListener, IPlayer.OnBufferingUpdateListener, IPlayer.OnPreAdPreparedListener {
+public class VodControllerManager extends ControllerManager implements IPlayerControlCallback, SpeedChangedReceiver.CallBack,
+        IPlayer.OnErrorListener, IPlayer.OnCompletionListener, IPlayer.OnInfoListener, IPlayer.OnPreparedListener,
+        IPlayer.OnBufferingUpdateListener, IPlayer.OnPreAdPreparedListener {
     private static final int HANDLE_ERROR = 102;
     private static final int INIT_RESULT = 109;
     private static final int CHANG_HIDE = 666;
@@ -72,33 +67,9 @@ public class VodControllerManager extends ControllerManager implements MenuContr
         this.isLive = isLive;
     }
 
-    private void initMenuSetting() {
-        //设置解码方式列表
-        ArrayList<Integer> decodes = new ArrayList<Integer>();
-        decodes.add(IPlayer.INTELLIGENT_DECODE);
-        decodes.add(IPlayer.HARD_DECODE);
-        decodes.add(IPlayer.SOFT_DECODE);
-
-        //设置播放大小列表
-        ArrayList<Integer> scales = new ArrayList<Integer>();
-//        scales.add(IPlayer.SURFACE_16_9);
-//        scales.add(IPlayer.SURFACE_4_3);
-        scales.add(IPlayer.SURFACE_BEST_FIT);
-        scales.add(IPlayer.SURFACE_FILL);
-
-        int size = MediaPerference.getVodScale();
-
-        SettingInfo<Integer> volume = new SettingInfo<Integer>(INDEX_VOLUME, R.string.menu_controller_item_volume_set, R.mipmap.ic_menu_sound, null, 0);
-        SettingInfo<Integer> decode = new SettingInfo<Integer>(INDEX_DECODE, R.string.menu_controller_item_decode_set, R.mipmap.ic_menu_jiema, decodes, mDecodeType, false);
-        SettingInfo<Integer> scale = new SettingInfo<Integer>(INDEX_SCALE, R.string.menu_controller_item_scalesize_set, R.mipmap.ic_menu_scale, scales, size);
-
-        settings.put(volume.getSettingIndex(), volume);
-        settings.put(decode.getSettingIndex(), decode);
-        settings.put(scale.getSettingIndex(), scale);
-    }
 
     private void initControllerManager() {
-        putController(MenuController.MENU_CONTROLLER, new MenuController(mContext, this));
+//        putController(MenuController.MENU_CONTROLLER, new MenuController(mContext, this));
         mSeekController = new SeekController(mContext, this);
         mSeekController.setIsLive(isLive);
         putController(SeekController.SEEK_CONTROLLER, mSeekController);
@@ -113,20 +84,6 @@ public class VodControllerManager extends ControllerManager implements MenuContr
         mContext.registerReceiver(speedReceiver, new IntentFilter(
                 SpeedChangedReceiver.SPEED_CHANGED_BROADCAST));
         showLoadingView();
-    }
-
-    @Override
-    public String getPlatformIconUrl(String platform) {
-        return null;
-    }
-
-    @Override
-    public String getSource() {
-        String source = "";
-        if (mVideoUrl != null) {
-            source = mVideoUrl.url;
-        }
-        return source;
     }
 
     @Override
@@ -203,14 +160,14 @@ public class VodControllerManager extends ControllerManager implements MenuContr
 
 
     //
-    @Override
-    public CharSequence getFilmTitle() {
-        if (mExtraBundle != null) {
-            String title = mExtraBundle.getString("title");
-            return TextUtils.isEmpty(title) ? mOriginUrl : title;
-        }
-        return null;
-    }
+//    @Override
+//    public CharSequence getFilmTitle() {
+//        if (mExtraBundle != null) {
+//            String title = mExtraBundle.getString("title");
+//            return TextUtils.isEmpty(title) ? mOriginUrl : title;
+//        }
+//        return null;
+//    }
 
     public int getQuality() {
         if (mVideoUrl != null) {
@@ -218,6 +175,7 @@ public class VodControllerManager extends ControllerManager implements MenuContr
         }
         return 0;
     }
+
 
     @Override
     public int getBufferPercentage() {
@@ -238,10 +196,10 @@ public class VodControllerManager extends ControllerManager implements MenuContr
         return false;
     }
 
-    @Override
-    public String getRate() {
-        return mRateSpeed;
-    }
+//    @Override
+//    public String getRate() {
+//        return mRateSpeed;
+//    }
 
     public Drawable getBackground() {
         return null;
@@ -325,7 +283,7 @@ public class VodControllerManager extends ControllerManager implements MenuContr
         }
     }
 
-    @Override
+    //    @Override
     public boolean isPlaying() {
         if (mPlayer != null) {
             return mPlayer.isPlaying();
@@ -345,11 +303,11 @@ public class VodControllerManager extends ControllerManager implements MenuContr
             boolean f = keyCode != KeyEvent.KEYCODE_VOLUME_UP && keyCode != KeyEvent.KEYCODE_VOLUME_DOWN
                     && keyCode != KeyEvent.KEYCODE_BACK && keyCode != KeyEvent.KEYCODE_ESCAPE;
             LogUtil.i("---------f----" + f);
-            //判断是否在播放广告   // 判断是否正在加载页
-            if ((isPlayAD || (isShowing() && TextUtils.equals(mCurrentControllerID, CONTROLLER_LOADING))) && f) {
-                LogUtil.i(String.format(Locale.CHINA, "isPlayAD [%b] || controller [%s]", isPlayAD, mCurrentControllerID));
-                return true;
-            }
+//            //判断是否在播放广告   // 判断是否正在加载页
+//            if ((isPlayAD || (isShowing() && TextUtils.equals(mCurrentControllerID, CONTROLLER_LOADING))) && f) {
+//                LogUtil.i(String.format(Locale.CHINA, "isPlayAD [%b] || controller [%s]", isPlayAD, mCurrentControllerID));
+//                return true;
+//            }
 
 
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT || keyCode == KeyEvent.KEYCODE_DPAD_RIGHT
@@ -365,7 +323,7 @@ public class VodControllerManager extends ControllerManager implements MenuContr
                 show(SeekController.SEEK_CONTROLLER);
                 return true;
             } else if (keyCode == KeyEvent.KEYCODE_MENU) {
-                show(MenuController.MENU_CONTROLLER);
+//                show(MenuController.MENU_CONTROLLER);
                 return true;
             }
         }
@@ -382,89 +340,89 @@ public class VodControllerManager extends ControllerManager implements MenuContr
     }
 
 
-    @Override
-    public SparseArray<SettingInfo> supportSetting() {
-        return settings;
-    }
+//    @Override
+//    public SparseArray<SettingInfo> supportSetting() {
+//        return settings;
+//    }
+//
+//    @Override
+//    public void changeSetting(int index, Object change) {
+//        switch (index) {
+//            case INDEX_DECODE:
+//                changeDecodeType((Integer) change);
+//                break;
+//            case INDEX_SCALE:
+//                changScaleSet((Integer) change);
+//                break;
+//        }
+//    }
 
-    @Override
-    public void changeSetting(int index, Object change) {
-        switch (index) {
-            case INDEX_DECODE:
-                changeDecodeType((Integer) change);
-                break;
-            case INDEX_SCALE:
-                changScaleSet((Integer) change);
-                break;
-        }
-    }
+//    @Override
+//    public Object getSetting(int index) {
+//        if (settings != null && settings.get(index) != null) {
+//            return settings.get(index).getSetting();
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public ArrayList<Object> getSettings(int index) {
+//        if (settings != null && settings.get(index) != null) {
+//            return settings.get(index).getSettings();
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public String parseName(int index, Object name) {
+//        switch (index) {
+//            case INDEX_DECODE:
+//                return MediaResourceHelper.getDecode((Integer) name);
+//            case INDEX_SCALE:
+//                return MediaResourceHelper.getScaleName((Integer) name);
+//            case INDEX_QUALITY:
+//                return MediaResourceHelper.getQualityName((Integer) name);
+//        }
+//        return "";
+//    }
 
-    @Override
-    public Object getSetting(int index) {
-        if (settings != null && settings.get(index) != null) {
-            return settings.get(index).getSetting();
-        }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Object> getSettings(int index) {
-        if (settings != null && settings.get(index) != null) {
-            return settings.get(index).getSettings();
-        }
-        return null;
-    }
-
-    @Override
-    public String parseName(int index, Object name) {
-        switch (index) {
-            case INDEX_DECODE:
-                return MediaResourceHelper.getDecode((Integer) name);
-            case INDEX_SCALE:
-                return MediaResourceHelper.getScaleName((Integer) name);
-            case INDEX_QUALITY:
-                return MediaResourceHelper.getQualityName((Integer) name);
-        }
-        return "";
-    }
-
-    @Override
-    public void post(int index, Object... o) {
-        switch (index) {
-            case VodLoadingView.INDEX_VODLOADING:
-                displayTxt(o);
-                break;
-        }
-    }
-
-    public void displayTxt(Object... textViews) {
-        try {
-            if (textViews == null) {
-                return;
-            }
-            TextView mTxtTitle = (TextView) textViews[0];
-            TextView mTxtSpeed = (TextView) textViews[1];
-            if (mTxtTitle != null) {
-                mTxtTitle.setText(getFilmTitle());
-            }
-            if (mTxtSpeed != null) {
-                mTxtSpeed.setText(mRateSpeed);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void post(int index, Object... o) {
+//        switch (index) {
+//            case VodLoadingView.INDEX_VODLOADING:
+//                displayTxt(o);
+//                break;
+//        }
+//    }
+//
+//    public void displayTxt(Object... textViews) {
+//        try {
+//            if (textViews == null) {
+//                return;
+//            }
+//            TextView mTxtTitle = (TextView) textViews[0];
+//            TextView mTxtSpeed = (TextView) textViews[1];
+//            if (mTxtTitle != null) {
+//                mTxtTitle.setText(getFilmTitle());
+//            }
+//            if (mTxtSpeed != null) {
+//                mTxtSpeed.setText(mRateSpeed);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
-    /**
-     * 返回当前控制器是属于直播还是点播;
-     *
-     * @return "直播" or "点播" or other
-     */
-    @Override
-    public String getControllerType() {
-        return "NoPaser";
-    }
+//    /**
+//     * 返回当前控制器是属于直播还是点播;
+//     *
+//     * @return "直播" or "点播" or other
+//     */
+//    @Override
+//    public String getControllerType() {
+//        return "NoPaser";
+//    }
 
     @Override
     public void onBufferingUpdate(IPlayer mp, int percent) {
@@ -503,7 +461,7 @@ public class VodControllerManager extends ControllerManager implements MenuContr
             if (y < height / 3) {
                 show(SeekController.SEEK_CONTROLLER);
             } else if (y > height / 3 && y < height * 2 / 3) {
-                show(MenuController.MENU_CONTROLLER);
+//                show(MenuController.MENU_CONTROLLER);
             }
             return true;
         }
@@ -554,7 +512,7 @@ public class VodControllerManager extends ControllerManager implements MenuContr
                 mOriginUrl = url;
                 mVideoUrl = new VideoUrl();
                 mVideoUrl.url = url;
-                initMenuSetting();
+//                initMenuSetting();
 //                boolean result = true;
 //                if (mPlayer.getDecodeType() == IPlayer.SOFT_DECODE) {
 //                    result = ExtraUitls.initMediaLibray(mContext);
@@ -594,7 +552,7 @@ public class VodControllerManager extends ControllerManager implements MenuContr
             }
         }
 
-        if (mControlListener!=null){
+        if (mControlListener != null) {
             mControlListener.onInfo(what);
         }
         return false;
@@ -602,7 +560,7 @@ public class VodControllerManager extends ControllerManager implements MenuContr
 
     private boolean isPaused = false;
 
-    @Override
+    //    @Override
     public void executePlay() {
         if (mPlayer != null) {
             mPlayer.start();
@@ -613,7 +571,8 @@ public class VodControllerManager extends ControllerManager implements MenuContr
         }
     }
 
-    @Override
+    //
+//    @Override
     public void executePause() {
         if (mPlayer != null) {
             mPlayer.pause();

@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.kylone.view.TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_live_item_title"
     android:focusable="true"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="5px">
-
-    <!--<com.kylone.view.TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-
-    <!--<com.kylone.view.ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-
-    <com.kylone.view.TextView
-        android:id="@+id/item_title"
-        android:textColor="#ffffff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:textSize="18px" />
-
-
-</com.kylone.view.LinearLayout>
+    android:maxLines="1"
+    android:paddingBottom="10px"
+    android:paddingLeft="40px"
+    android:paddingTop="10px"
+    android:textColor="#ffffff"
+    android:textSize="24px" />

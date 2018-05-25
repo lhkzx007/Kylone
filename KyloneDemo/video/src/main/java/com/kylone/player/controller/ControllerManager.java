@@ -30,7 +30,7 @@ import java.util.Set;
  * Created by zack
  */
 public class ControllerManager implements SpeedChangedReceiver.CallBack{
-    protected static final int DEFAULT_TIME = 4000;
+    protected static final int DEFAULT_TIME = 8000;
     protected static final int FADE_OUT = 1;
     public static final String CONTROLLER_LOADING = "controller_loading";
 

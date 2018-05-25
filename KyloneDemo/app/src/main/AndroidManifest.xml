@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name="com.kylone.BaseApplication"
@@ -65,6 +66,16 @@
             </intent-filter>
         </activity>
 
+        <!-- 点播详情页面 -->
+        <activity
+            android:name="com.kylone.DetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="kylone.intent.action.Detail" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <!-- 点播页面 -->
         <activity
             android:name="com.kylone.PlayActivity"
@@ -82,6 +93,37 @@
             android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name="kylone.intent.action.Television" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Room Server -->
+        <activity
+            android:name="com.kylone.RoomActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="kylone.intent.action.Room" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Room Server -->
+        <activity
+            android:name="com.kylone.InformationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="kylone.intent.action.Information" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Room Server -->
+        <activity
+            android:name="com.kylone.WebActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="kylone.intent.action.Web" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

@@ -772,41 +772,7 @@ public class MainVideoView extends FrameLayout implements IPlayer, IPlayerInterf
         Map<String, String> map = new HashMap<>();
         //type = 会员类型 如 腾讯会员|单片付费|国广会员
         //position = "广告时间"|"用户中心"|"影片试看"|"影片详情"|运营页
-//        String type;
-//        String position;
-//        if (TextUtils.equals(playType, IVideoFactory.VIDEO_TENCENT)) {
-//            if (!isTry() && getDuration() > 10) {
-//                type = "单片付费";
-//            } else {
-//                type = "腾讯会员";
-//            }
-//        } else if (TextUtils.equals(playType, "cibn")) {
-//            type = "国广会员";
-//        } else if (TextUtils.equals(playType, "pptv")) {
-//            type = "PPTV会员";
-//        } else {
-//            type = "其他会员";
-//        }
-//
-//        if (isPlayingAd()) {
-//            position = "广告时间";
-//        } else if (isTry()) {
-//            position = "影片试看";
-//        } else {
-//            position = "其他";
-//        }
-//
-//        map.put("type", type);
-//        map.put("position", position);
-//        LogUtil.i(TAG, "start vip charge  , play type : " + playType);
-//        MobclickAgent.onEvent(ComponentContext.getContext(), AnalyticKey.FOUR_KT_VIP, AnalyticKey.getCommonMap(map));
-//        if (player != null) {
-//            if (TextUtils.equals(playType, IVideoFactory.VIDEO_TENCENT)) {
-//                player.startVipCharge();
-//            } else {
-//                onInfo(this, INFO_MSG_START_CHARGE, 0, null);
-//            }
-//        }
+
     }
 
     @Override

@@ -1,36 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_home_2"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/layout_activity_title" />
-
-    <LinearLayout
+    <ImageView
+        android:id="@+id/home_bg"
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/home_title"
+        layout="@layout/layout_activity_title" />
+
+    <com.kylone.view.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450px"
+        android:layout_below="@+id/home_title"
+        android:layout_marginBottom="100px"
+        android:layout_marginTop="50px"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="55px"
+        android:paddingRight="30px">
+
+
+        <com.kylone.view.RelativeLayout
+            android:layout_width="680px"
+            android:layout_height="match_parent">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/home_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false" />
+
+            <com.kylone.view.LinearLayout
+                android:id="@+id/home_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="50px"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="#33005555"
+                android:gravity="center_vertical"
+                android:padding="10px" />
+
+            <com.kylone.view.TextView
+                android:id="@+id/home_doc"
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/home_dot"
+                android:background="#33005555"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="10px"
+                android:singleLine="true"
+                android:text="露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈"
+                android:textSize="22px"
+                android:textStyle="bold" />
+
+        </com.kylone.view.RelativeLayout>
+
+        <!--<com.kylone.view.ImageView-->
+        <!--android:id="@+id/home_image"-->
+        <!--android:layout_width="680px"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:src="@drawable/home_image" />-->
 
         <com.kylone.view.RecyclerView
             android:id="@+id/home_list"
-            android:layout_width="640px"
-            android:layout_height="wrap_content"
+            android:layout_width="450px"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:paddingLeft="30px"
-            android:paddingRight="30px"
-            android:paddingTop="50px" />
+            android:paddingLeft="30px" />
+    </com.kylone.view.LinearLayout>
 
-        <com.kylone.view.ImageView
-            android:id="@+id/home_image"
-            android:layout_width="640px"
-            android:layout_height="wrap_content"
-            android:paddingRight="30px"
-            android:src="@drawable/home_image" />
-    </LinearLayout>
-</com.kylone.view.LinearLayout>
+    <com.kylone.view.RecyclerView
+        android:id="@+id/home_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="50px"
+        android:paddingLeft="50px"
+        android:paddingRight="50px"
+        android:paddingTop="10px">
+
+    </com.kylone.view.RecyclerView>
+
+
+</RelativeLayout>

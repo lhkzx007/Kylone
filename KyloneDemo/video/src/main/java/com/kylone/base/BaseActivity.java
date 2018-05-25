@@ -18,9 +18,10 @@ import java.util.Locale;
  */
 
 public class BaseActivity extends FragmentActivity {
-    TextView activityTitle;
     private TextView mTime;
     private TextView mDate;
+    private TextView mWifi;
+    private BroadcastReceiver mClockReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +36,28 @@ public class BaseActivity extends FragmentActivity {
     }
 
     private void initTitleView() {
+        mWifi = (TextView) findViewById(R.id.title_wifi);
         mTime = (TextView) findViewById(R.id.title_time);
         mDate = (TextView) findViewById(R.id.title_date);
     }
 
     protected void initTime() {
+        if (mTime == null) {
+            return;
+        }
+
+        mClockReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (Intent.ACTION_TIMEZONE_CHANGED.equals(intent.getAction()) || Intent.ACTION_TIME_TICK.equals(intent.getAction())) {
+                    timeChange();
+                }
+            }
+        };
         IntentFilter clockFilter = new IntentFilter();
         clockFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         clockFilter.addAction(Intent.ACTION_TIME_TICK);
+
         registerReceiver(mClockReceiver, clockFilter);
         timeChange();
     }
@@ -65,16 +80,9 @@ public class BaseActivity extends FragmentActivity {
         if (mTime != null)
             mTime.setText(String.format(Locale.getDefault(), "%02d : %02d", hour, minute));
         if (mDate != null)
-            mDate.setText(String.format(Locale.getDefault(), "%d 年 %02d 月 %02d 日", year, month, day));
+            mDate.setText(String.format(Locale.getDefault(), "%d-%02d-%02d", year, month, day));
     }
 
-
-    public void setActivityTitle(String title) {
-        activityTitle = (TextView) findViewById(R.id.title_title);
-        if (activityTitle != null) {
-            this.activityTitle.setText(title);
-        }
-    }
 
     @Override
     protected void onStart() {
@@ -93,6 +101,9 @@ public class BaseActivity extends FragmentActivity {
         super.onResume();
         LogUtil.d(" onResume ");
         initTime();
+        if (mWifi != null) {
+            mWifi.setText("xxxxx Password : xxxxxxx");
+        }
     }
 
     @Override
@@ -113,18 +124,10 @@ public class BaseActivity extends FragmentActivity {
         super.onDestroy();
         LogUtil.d(" onDestroy ");
         mClockReceiver = null;
-        activityTitle = null;
         mTime = null;
         mDate = null;
     }
 
 
-    private BroadcastReceiver mClockReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Intent.ACTION_TIMEZONE_CHANGED.equals(intent.getAction()) || Intent.ACTION_TIME_TICK.equals(intent.getAction())) {
-                timeChange();
-            }
-        }
-    };
+
 }

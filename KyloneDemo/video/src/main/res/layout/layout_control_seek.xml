@@ -3,127 +3,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.kylone.view.RelativeLayout
-        android:id="@+id/seek_layout"
-        android:layout_width="match_parent"
-        android:layout_height="180px"
-        android:background="@mipmap/bg_seek_controller">
-
-        <com.kylone.view.RelativeLayout
-            android:id="@+id/seek_control_info"
-            android:layout_width="match_parent"
-            android:layout_height="86px"
-            android:focusable="false"
-            android:gravity="center_vertical">
-
-            <com.kylone.player.view.DigitalClock
-            android:id="@+id/seek_info_system_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="38px"
-            android:layout_marginTop="3px"
-            android:drawableLeft="@mipmap/time_label"
-            android:drawablePadding="18px"
-            android:focusable="false"
-            android:gravity="center"
-            android:textColor="#999"
-            android:textSize="22px" />
-
-            <!--<com.kylone.view.View-->
-            <!--android:id="@+id/line_seek_one"-->
-            <!--android:layout_width="1px"-->
-            <!--android:layout_height="22px"-->
-            <!--android:layout_marginRight="10px"-->
-            <!--android:layout_marginTop="3px"-->
-            <!--android:background="#f0f0f0"-->
-            <!--android:focusable="false" />-->
-
-            <com.kylone.view.TextView
-                android:id="@+id/seek_info_speed"
-                android:layout_width="150px"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="38px"
-                android:layout_marginTop="3px"
-                android:layout_toLeftOf="@+id/seek_info_system_time"
-                android:layout_weight="1"
-                android:focusable="false"
-                android:gravity="end"
-                android:textColor="#999"
-                android:textSize="22px" />
-
-            <com.kylone.view.TextView
-                android:id="@+id/seek_info_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="60px"
-                android:layout_marginRight="15px"
-                android:focusable="false"
-                android:singleLine="true"
-                android:textColor="#f0f0f0"
-                android:textSize="18px"
-                android:textStyle="bold"
-                android:typeface="monospace" />
-
-            <!--<com.kylone.view.TextView-->
-                <!--android:id="@+id/seek_info_quality"-->
-                <!--android:layout_width="50px"-->
-                <!--android:layout_height="29px"-->
-                <!--android:layout_toLeftOf="@+id/seek_info_speed"-->
-                <!--android:background="@drawable/bg_seek_quality"-->
-                <!--android:focusable="false"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="18px" />-->
-        </com.kylone.view.RelativeLayout>
-        <!-- 时间 -->
-
-        <com.kylone.view.TextView
-            android:id="@+id/seek_info_duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/seek_control_info"
-            android:layout_marginRight="38px"
-            android:focusable="false"
-            android:textColor="#d3d3d3"
-            android:textSize="20px" />
-        <!-- 进度条 -->
-
-        <com.kylone.player.view.SeekView
-            android:id="@+id/seek_info_seekbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/seek_control_info"
-            android:layout_marginLeft="29px"
-            android:layout_marginTop="5px"
-            android:layout_toLeftOf="@id/seek_info_duration"
-            android:max="100"
-            android:paddingRight="25px"
-            android:progress="0" />
-    </com.kylone.view.RelativeLayout>
-
-    <com.kylone.view.FrameLayout
-        android:id="@+id/seek_control_extend"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/seek_layout"
-        android:focusable="false" />
-
     <com.kylone.view.View
         android:id="@+id/seek_control_pause"
-        android:layout_width="100px"
-        android:layout_height="100px"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="60px"
-        android:background="@mipmap/ic_pause"
+        android:layout_width="160px"
+        android:layout_height="160px"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/seek_pause"
         android:focusable="false" />
 
-    <com.kylone.view.ImageView
-        android:id="@+id/seek_control_iv"
-        android:layout_width="144px"
-        android:layout_height="144px"
-        android:layout_centerInParent="true" />
+
+    <com.kylone.view.LinearLayout
+        android:id="@+id/seek_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_alignParentBottom="true"
+        android:background="#6000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="50px">
+
+        <com.kylone.view.View
+            android:id="@+id/seek_btn"
+            android:layout_width="35px"
+            android:layout_height="35px"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="25px"
+            android:background="@mipmap/seek_btn_start" />
+
+        <com.kylone.view.SeekBar
+            android:id="@+id/seek_bar"
+            style="@style/seek_bg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:max="100"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:progress="0" />
+
+        <com.kylone.view.TextView
+            android:id="@+id/seek_time"
+            android:layout_width="110px"
+            android:layout_height="wrap_content"
+            android:textColor="#aaaaaa"
+            android:textSize="18px" />
+
+        <com.kylone.view.View
+
+            android:layout_width="35px"
+            android:layout_height="35px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="30px"
+            android:background="@mipmap/ic_volume" />
+
+
+    </com.kylone.view.LinearLayout>
+
 
 </com.kylone.view.RelativeLayout>

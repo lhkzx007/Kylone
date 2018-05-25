@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/activity_title"
+        layout="@layout/layout_activity_title" />
+
+    <com.kylone.view.RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="40px">
+
+        <com.kylone.view.ImageView
+            android:id="@+id/detail_img"
+            android:layout_width="250px"
+            android:layout_height="350px"
+            android:layout_marginRight="50px"
+            android:scaleType="fitXY" />
+
+        <com.kylone.view.TextView
+            android:id="@+id/detail_doc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/detail_img"
+            android:textSize="26px" />
+
+        <com.kylone.view.TextView
+            android:id="@+id/detail_play"
+            android:layout_width="230px"
+            android:layout_height="50px"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/detail_img"
+            android:background="@drawable/bg_btn_play"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="播    放"
+            android:textColor="#ffffff"
+            android:textSize="26px" />
+    </com.kylone.view.RelativeLayout>
+
+    <com.kylone.view.RecyclerView
+        android:id="@+id/detail_film"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:paddingBottom="30px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="30px" />
+
+</LinearLayout>

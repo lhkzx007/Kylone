@@ -17,16 +17,18 @@
 
         <com.kylone.view.RecyclerView
             android:id="@+id/film_list_item"
-            android:paddingLeft="30px"
-            android:paddingTop="30px"
-            android:paddingRight="30px"
+            android:layout_marginTop="15px"
+            android:paddingTop="15px"
+            android:paddingRight="15px"
             android:layout_width="180px"
             android:layout_height="match_parent"/>
 
         <com.kylone.view.RecyclerView
             android:id="@+id/film_list_content"
             android:layout_width="0px"
-            android:padding="30px"
+            android:layout_marginTop="15px"
+            android:paddingTop="15px"
+            android:padding="10px"
             android:layout_height="match_parent"
             android:layout_weight="1" />
     </com.kylone.view.LinearLayout>
