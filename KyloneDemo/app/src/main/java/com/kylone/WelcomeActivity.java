@@ -50,7 +50,7 @@ public class WelcomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        warningView =  findViewById(R.id.layout_warning);
+        warningView = findViewById(R.id.layout_warning);
         imgWelcome = (ImageView) findViewById(R.id.img_welcome);
         sp = getSharedPreferences("kylone", Context.MODE_PRIVATE);
 
@@ -59,12 +59,12 @@ public class WelcomeActivity extends BaseActivity {
             Glide.with(getApplicationContext()).load(mBootimg).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgWelcome);
         }
 
-        if(!ApiUtils.checkPermission(getApplicationContext())){
+        if (!ApiUtils.checkPermission(getApplicationContext())) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
             intent.setData(Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, 0);
         }
-  //test code
+        //test code
 //        HandlerUtils.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -73,13 +73,8 @@ public class WelcomeActivity extends BaseActivity {
 //                new PasscodeDialog(WelcomeActivity.this).show("Input Password");
 //            }
 //        },5000);
-
-        String host = sp.getString("ip", "");
-        if (TextUtils.isEmpty(host)) {
-            showEditHost();
-            return;
-        }
-        ApiUtils.setIp(host);
+        targetHost = sp.getString("ip", ApiUtils.getIp());
+        ApiUtils.setIp(targetHost);
         connectServer();
     }
 
@@ -98,7 +93,7 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void connectServer() {
-        targetHost = ApiUtils.getIp();
+
         ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
@@ -140,8 +135,6 @@ public class WelcomeActivity extends BaseActivity {
                     public void run() {
                         if (api.connectState > 0) {
 //                            getConfigVal("bgnd")
-
-
 
 
                             String bootimg = ApiUtils.shApi.getConfigVal("splash");
@@ -222,12 +215,12 @@ public class WelcomeActivity extends BaseActivity {
                 warningView.setVisibility(View.VISIBLE);
             }
         });
-//        HandlerUtils.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                finish();
-//            }
-//        }, 5000);
+        HandlerUtils.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showEditHost();
+            }
+        }, 1200);
     }
 
     @Override

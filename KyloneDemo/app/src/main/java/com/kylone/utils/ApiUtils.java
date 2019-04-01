@@ -95,7 +95,7 @@ public class ApiUtils {
                         LogUtil.v(TAG, "system-reboot requested by server\n");
                     } else if (msg.equals(SHC_MESSAGE_FWUPDATE)) {
                         LogUtil.v(TAG, "firmware update requested by server\n");
-                    } else if (msg.equals(SHC_MESSAGE_EMERG)) {
+                    } else if (msg.equals(SHC_MESSAGE_EMERGENCY)) {
                         LogUtil.v(TAG, " emerg  = " + msg);
                         String data = shgetremotedata(msg);
                         LogUtil.i("data  =  " + data);

@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+        <!--android:src="@mipmap/bg_loading"-->
     <com.kylone.view.ImageView
-        android:src="@drawable/bg_loading_it"
+    android:src="@drawable/bg_loading_it"
         android:id="@+id/loading_img_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

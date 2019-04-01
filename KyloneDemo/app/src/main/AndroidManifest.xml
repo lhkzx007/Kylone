@@ -15,8 +15,8 @@
     <application
         android:name="com.kylone.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/icon_itelecom"
-        android:label="@string/app_name_itelecom"
+        android:icon="@mipmap/icon_kylone"
+        android:label="@string/app_name_kylone"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <!--<activity-->
         <!--android:name="com.zack.kylonedemo.MainActivity"-->
