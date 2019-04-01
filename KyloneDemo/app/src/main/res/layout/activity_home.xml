@@ -5,29 +5,61 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/home_bg"
+        android:id="@+id/bg_img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <include
         android:id="@+id/home_title"
         layout="@layout/layout_activity_title" />
 
+    <com.kylone.view.FrameLayout
+        android:id="@+id/home_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:layout_below="@+id/home_title"
+        android:layout_marginBottom="10px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_marginTop="30px">
+
+        <ImageView
+            android:id="@+id/home_welcome_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <com.kylone.view.TextView
+            android:id="@+id/home_doc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="Welcome"
+            android:textSize="26px"
+            android:textStyle="bold" />
+    </com.kylone.view.FrameLayout>
+
     <com.kylone.view.LinearLayout
         android:layout_width="match_parent"
         android:layout_height="450px"
-        android:layout_below="@+id/home_title"
-        android:layout_marginBottom="100px"
-        android:layout_marginTop="50px"
+        android:layout_below="@+id/home_welcome"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:paddingBottom="20px"
         android:paddingLeft="55px"
-        android:paddingRight="30px">
+        android:paddingRight="30px"
+        android:paddingTop="20px">
 
 
         <com.kylone.view.RelativeLayout
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
             android:layout_width="680px"
             android:layout_height="match_parent">
 
@@ -43,24 +75,8 @@
                 android:layout_height="50px"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:background="#33005555"
                 android:gravity="center_vertical"
                 android:padding="10px" />
-
-            <com.kylone.view.TextView
-                android:id="@+id/home_doc"
-                android:layout_width="match_parent"
-                android:layout_height="50px"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/home_dot"
-                android:background="#33005555"
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:padding="10px"
-                android:singleLine="true"
-                android:text="露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈,露凝无游氛，天高风景澈"
-                android:textSize="22px"
-                android:textStyle="bold" />
 
         </com.kylone.view.RelativeLayout>
 

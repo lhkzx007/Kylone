@@ -7,22 +7,41 @@ android {
         applicationId "com.kylone.player"
         minSdkVersion configInfo.minSdkVersion
         targetSdkVersion configInfo.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        ndk{
+        versionCode 2
+        versionName "1.2.0"
+        ndk {
             abiFilters "armeabi-v7a"
         }
     }
+
+    signingConfigs {
+        release {
+            storeFile file("/Users/admin/Desktop/kylone/kylone1.jks")
+            storePassword "kylone.com"
+            keyAlias "kylone"
+            keyPassword "kylone.com"
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    applicationVariants.all{variant ->
+        variant.outputs.all{
+            outputFileName = "kylone_${defaultConfig.versionName}_${releaseTime()}.apk"
+        }
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd-HHmm")
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':video')
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':video')
 }

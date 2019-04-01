@@ -45,8 +45,8 @@ public class ListActivity extends BaseActivity {
         initView();
         initAdapter();
         initListener();
-        test();
-//        initDate();
+//        test();
+        initDate();
     }
 
     private void initView() {
@@ -127,7 +127,7 @@ public class ListActivity extends BaseActivity {
 
                                 CommonInfo contextInfo = new CommonInfo();
                                 contextInfo.setTitle(vKey);
-                                contextInfo.setAction("kylone.intent.action.Player");
+                                contextInfo.setAction("kylone.intent.action.Detail");
 
 //                                LogUtil.i("-" + vKey);
 
@@ -146,19 +146,21 @@ public class ListActivity extends BaseActivity {
 //                                    LogUtil.i("--" + index);
                                     if (TextUtils.equals(vvkey, "logo")) {
                                         contextInfo.setImage(vvvalue);
-                                    } else if (TextUtils.equals(vvkey, "src")) {
-                                        keyCommon.append("|url");
-                                        valueCommon.append("|").append(vvvalue);
-                                    } else if (TextUtils.equals(vvkey, "txt")) {
-                                        keyCommon.append("|title");
-                                        valueCommon.append("|").append(vvvalue);
                                     }
+//                                    else if (TextUtils.equals(vvkey, "src")) {
+//                                        keyCommon.append("|url");
+//                                        valueCommon.append("|").append(vvvalue);
+//                                    } else if (TextUtils.equals(vvkey, "txt")) {
+//                                        keyCommon.append("|title");
+//                                        valueCommon.append("|").append(vvvalue);
+//                                    }
                                     if (--index != 0) {
                                         keyCommon.append("|");
                                         valueCommon.append("|");
                                     }
                                 }
                                 LogUtil.i(" --zack--  :" + keyCommon.toString());
+                                LogUtil.i(" --zack--  :" + valueCommon.toString());
                                 contextInfo.setValue(keyCommon.toString(), valueCommon.toString());
                                 contentInfos.add(contextInfo);
                             }
@@ -184,10 +186,40 @@ public class ListActivity extends BaseActivity {
     }
 
     private void initListener() {
+
+//        adapterFilm.setOnItemListener(new CommonAdapter.OnItemListener() {
+//            @Override
+//            public void onClick(RecyclerView.ViewHolder v, int position) {
+//                if (items != null && items.size() > 0) {
+//                    ArrayList<CommonInfo> a = contents.get(items.get(position).getTitle());
+////                    CommonInfo title = adapterFilm.getData(position);
+////                    ArrayList<CommonInfo> list = contents.get(title.getTitle());
+//                    adapterItem.setData(a);
+//                }
+//            }
+//
+//            @Override
+//            public void onFocusChange(RecyclerView.ViewHolder v, int position, boolean hasFocus) {
+//
+//            }
+//
+//            @Override
+//            public void onSelectChange(RecyclerView.ViewHolder v, int position, boolean hasSelect) {
+//
+//            }
+//        });
+
         adapterItem.setOnItemListener(new CommonAdapter.OnItemListener() {
             @Override
             public void onClick(RecyclerView.ViewHolder v, int position) {
                 LogUtil.i("item-----" + position);
+
+                if (items != null && items.size() > 0) {
+                    ArrayList<CommonInfo> a = contents.get(items.get(position).getTitle());
+//                    CommonInfo title = adapterFilm.getData(position);
+//                    ArrayList<CommonInfo> list = contents.get(title.getTitle());
+                    adapterFilm.setData(a);
+                }
             }
 
             @Override

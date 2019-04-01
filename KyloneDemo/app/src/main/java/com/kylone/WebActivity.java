@@ -1,12 +1,13 @@
 package com.kylone;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.kylone.base.BaseActivity;
 import com.kylone.player.R;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 
 /**
  * Created by Zack on 2018/5/24
@@ -14,6 +15,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 
 public class WebActivity extends BaseActivity {
     private WebView webview;
+    private final String URL = "http://cms.kylone.blue/%s/index.html";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +26,7 @@ public class WebActivity extends BaseActivity {
     }
 
     private void initView() {
-
         webview = (WebView) findViewById(R.id.web_view);
-
         WebViewClient client = new WebViewClient() {
             // 防止加载网页时调起系统浏览器
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -39,7 +39,11 @@ public class WebActivity extends BaseActivity {
     }
 
     private void initData() {
-        webview.loadUrl(getIntent().getStringExtra("url"));
+        String src = getIntent().getStringExtra("src");
+        if (!TextUtils.isEmpty(src)) {
+            String url = String.format(URL, src);
+            webview.loadUrl(url);
+        }
     }
 
     private void initWebViewSettings() {

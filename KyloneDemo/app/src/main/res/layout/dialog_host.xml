@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600px"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="20px"
+    android:paddingTop="20px">
+
+    <com.kylone.view.FrameLayout
+        android:id="@+id/dialog_el"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:padding="10px">
+
+        <EditText
+            android:id="@+id/dialog_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:inputType="text"
+            android:hint="Please input the server IP address ..." />
+    </com.kylone.view.FrameLayout>
+
+
+    <com.kylone.view.TextView
+        android:id="@+id/dialog_enter"
+        android:layout_width="120px"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dialog_el"
+        android:layout_marginLeft="50px"
+        android:background="@drawable/bg_live_item"
+        android:enabled="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="10px"
+        android:text="Enter"
+        android:textColor="#FFFFFF"
+        android:textSize="20px" />
+
+    <com.kylone.view.TextView
+        android:id="@+id/dialog_default"
+        android:layout_width="120px"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/dialog_el"
+        android:layout_marginRight="50px"
+        android:background="@drawable/bg_live_item"
+        android:enabled="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="10px"
+        android:text="Default"
+        android:textColor="#FFFFFF"
+        android:textSize="20px" />
+
+
+</com.kylone.view.RelativeLayout>

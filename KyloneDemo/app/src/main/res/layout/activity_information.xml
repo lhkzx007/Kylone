@@ -6,6 +6,12 @@
     android:clipToPadding="false"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
     <include
         android:id="@+id/activity_title"
         layout="@layout/layout_activity_title" />
@@ -30,7 +36,7 @@
         android:layout_toRightOf="@+id/information_infos"
         android:scaleType="fitXY" />
 
-    <TextView
+    <com.kylone.view.TextView
         android:id="@+id/information_introduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +44,8 @@
         android:layout_alignRight="@+id/information_img"
         android:layout_below="@+id/information_img"
         android:layout_marginTop="10px"
-        android:maxLines="5" />
+        android:maxLines="5"
+        android:textSize="20px" />
 
 
 </RelativeLayout>

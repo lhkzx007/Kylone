@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/img_welcome"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:src="@drawable/bg_welcome" />
-    <com.kylone.view.TextView
-        android:id="@+id/info_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="30px"
-        android:textSize="20px"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bg_welcome_it" />
 
-</merge>
+    <RelativeLayout
+        android:id="@+id/layout_warning"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:visibility="gone">
+
+        <com.kylone.view.ImageView
+            android:layout_marginTop="200px"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/img_warning"
+            android:layout_width="180px"
+            android:layout_height="158px"
+            android:src="@mipmap/ic_warning" />
+
+        <com.kylone.view.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_warning"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15px"
+            android:text="This device is currently disabled， Please contact the provider !"
+            android:textColor="#ffffff"
+            android:textSize="26px"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</FrameLayout>

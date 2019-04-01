@@ -1,5 +1,7 @@
 package com.kylone.adapter;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
@@ -54,6 +56,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
         if (isSelect > 0) {
             holder.itemView.setSelected(isSelect(position));
         }
+//        holder.itemView.setTag(position);
         CommonInfo info = mData.get(position);
         if (holder.title != null) {
             holder.title.setText(info.getTitle());
@@ -106,6 +109,10 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
         }
     }
 
+    public int getSelect(int index) {
+        return selected_position.keyAt(index);
+    }
+
     public void setData(List<CommonInfo> data) {
         mData = data;
         notifyDataSetChanged();
@@ -130,11 +137,65 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
         this.mWeenRecyclerView = new WeakReference<>(mWeenRecyclerView);
     }
 
+//
+//    boolean outputPortDragging = false;
+//    boolean outputPortScrolling = false;
+//
+//    public void fff(final int position) {
+//        RecyclerView recyclerView = mWeenRecyclerView.get();
+//        if (recyclerView != null) {
+//            final View itemView;
+//            final LinearLayoutManager layoutMgr = (LinearLayoutManager) recyclerView.getLayoutManager();
+////            final GridLayoutManager layoutMgr = (GridLayoutManager) recyclerView.getLayoutManager();
+//
+//
+//            int firstPosition = layoutMgr.findFirstVisibleItemPosition();
+//            int lastPosition = layoutMgr.findLastVisibleItemPosition();
+//            if (position < firstPosition || position > lastPosition) {
+//                recyclerView.smoothScrollToPosition(position); //滚动到指定的位置
+////这里需要处理滚动监听，请看步骤3
+//                recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//                    @Override
+//                    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                        super.onScrollStateChanged(recyclerView, newState);
+//                        int firstPosition;
+//                        switch (newState) {
+//                            case RecyclerView.SCROLL_STATE_SETTLING:
+//                                if (!outputPortDragging && !outputPortScrolling) {
+//                                    outputPortScrolling = true; //a scrolling occurs
+//                                }
+//                                break;
+//                            case RecyclerView.SCROLL_STATE_DRAGGING:
+//                                outputPortDragging = true; //如果是用户主动滑动recyclerview，则不触发位置计算。
+//                                break;
+//                            case RecyclerView.SCROLL_STATE_IDLE:
+//                                if (!outputPortDragging && outputPortScrolling) {
+//                                    outputPortDragging = false;
+//                                    outputPortScrolling = false;
+//                                    firstPosition = layoutMgr.findFirstVisibleItemPosition();
+//                                    int lastPos = layoutMgr.findLastVisibleItemPosition();
+//                                    //N.B.: firstVisibleItemPosition is not the first child of layoutmanager
+//                                    itemView = layoutMgr.getChildAt(position - (int) layoutMgr.getChildAt(0).getTag()));  //由于滚动事件会多次触发IDLE状态，我们只需要在第一次IDLE被触发时获取ItemView。
+//                                }
+//                                break;
+//                        }
+//                    }
+//                });
+//            } else {
+//                //直接获取ItemView
+//                itemView = layoutMgr.getChildAt(position - (int) layoutMgr.getChildAt(0).getTag())；//通过获取Child(0)的tag得到第一个Child的实际位置
+//            }
+//
+//
+//        }
+//    }
+
     /**
      * 设置item变大的倍数
      *
      * @param scale_default
      */
+
     public void setScaleDefault(float scale_default) {
         this.scale_default = scale_default;
     }

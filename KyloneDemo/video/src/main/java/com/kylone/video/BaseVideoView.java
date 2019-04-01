@@ -56,7 +56,6 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
     protected Map<String, String> mHeaders;
 
 
-
     public BaseVideoView(Context context) {
         super(context);
         init();
@@ -111,7 +110,7 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
     class THandler extends Handler {
         private WeakReference<BaseVideoView> serviceRef;
 
-        public THandler(Looper looper, BaseVideoView view){
+        public THandler(Looper looper, BaseVideoView view) {
             super(looper);
             serviceRef = new WeakReference<BaseVideoView>(view);
         }
@@ -119,10 +118,10 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
         @Override
         public void handleMessage(Message msg) {
             BaseVideoView video = serviceRef.get();
-            if (video == null){
+            if (video == null) {
                 return;
             }
-            switch (msg.what){
+            switch (msg.what) {
                 case HANDLER_MSG_RELEASE:
                     video._release();
                     break;
@@ -132,7 +131,7 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
 
     protected void openVideo() {
         isNeedOpen = true;
-        LogUtil.i(TAG,"--openVideo--");
+        LogUtil.i(TAG, "--openVideo--");
         if (TextUtils.isEmpty(mPath) || mSurfaceHolder == null || !isSurfaceCreated) {
             LogUtil.e(TAG, String.format(Locale.getDefault(), "path = %s , surfaceHolder = %s , player = %s ", mPath, mSurfaceHolder, mMediaPlayer));
             LogUtil.e(TAG, "not ready for playback just yet");
@@ -142,6 +141,9 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
         try {
             isPrepared = false;
             mMediaPlayer = new MediaPlayer();
+//            mMediaPlayer.selectTrack();
+
+
             mMediaPlayer.setOnPreparedListener(this);
             mMediaPlayer.setOnVideoSizeChangedListener(this);
             mMediaPlayer.setOnCompletionListener(this);
@@ -153,6 +155,7 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
             mDuration = -1;
             mMediaPlayer.setDataSource(mContext, Uri.parse(mPath), null);
             mMediaPlayer.prepareAsync();
+
             LogUtil.i(TAG, "开始异步加载MediaPlayer");
             isNeedOpen = false;
         } catch (Exception e) {
@@ -261,7 +264,7 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
         try {
             if (mMediaPlayer != null && isPrepared && pos >= 0) {
                 if (isTry() && pos >= PREVIEW_DURATION) {
-                    if (mOnCompletionListener!=null){
+                    if (mOnCompletionListener != null) {
                         mOnCompletionListener.onCompletion(this);
                     }
                     return;
@@ -326,7 +329,7 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
     @Override
     public boolean release() {
         //判断是否主线程
-        if ( Thread.currentThread() != Looper.getMainLooper().getThread()){
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
             return _release();
         }
         threadHandler.sendEmptyMessage(HANDLER_MSG_RELEASE);
@@ -531,6 +534,21 @@ public class BaseVideoView extends IVideoView implements MediaPlayer.OnErrorList
     public void onPrepared(MediaPlayer mp) {
 //        changeScale(mCurrentSize);
         LogUtil.i(TAG, "base video onPrepared");
+
+//        MediaPlayer.TrackInfo[] trackInfos = mMediaPlayer.getTrackInfo();
+//        for (MediaPlayer.TrackInfo trackInfo : trackInfos) {
+//            switch (trackInfo.getTrackType()) {
+//                case MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_TIMEDTEXT:
+//                    break;
+//                case MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_SUBTITLE:
+//                    mMediaPlayer.deselectTrack(MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_SUBTITLE);
+//                    break;
+//            }
+//            LogUtil.i("trackInfo.getTrackType() -> "+trackInfo.getTrackType());
+//            LogUtil.i("trackInfo.getLanguage() -> "+trackInfo.getLanguage());
+//            LogUtil.i("trackInfo.getFormat() -> "+trackInfo.getFormat().toString());
+//        }
+
         mVideoWidth = mp.getVideoWidth();
         mVideoHeight = mp.getVideoHeight();
         isPrepared = true;

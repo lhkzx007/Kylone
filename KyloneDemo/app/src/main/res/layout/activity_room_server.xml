@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <ImageView
+        android:id="@+id/bg_img"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <include
         android:id="@+id/activity_title"
         layout="@layout/layout_activity_title" />

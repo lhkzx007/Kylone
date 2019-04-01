@@ -4,10 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.kylone.utils.LogUtil;
 import com.kylone.video.R;
 
@@ -22,6 +26,8 @@ public class BaseActivity extends FragmentActivity {
     private TextView mDate;
     private TextView mWifi;
     private BroadcastReceiver mClockReceiver;
+    private ImageView mBgImage;
+    private ImageView mTitleBg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,31 @@ public class BaseActivity extends FragmentActivity {
         mWifi = (TextView) findViewById(R.id.title_wifi);
         mTime = (TextView) findViewById(R.id.title_time);
         mDate = (TextView) findViewById(R.id.title_date);
+        mTitleBg = (ImageView) findViewById(R.id.title_bg_img);
+
+        SharedPreferences sp = getSharedPreferences("kylone", MODE_PRIVATE);
+        mBgImage = (ImageView) findViewById(R.id.bg_img);
+        if (mBgImage != null) {
+            String bgnd = sp.getString("bgnd", null);
+            if (!TextUtils.isEmpty(bgnd)) {
+                Glide.with(getApplicationContext()).load(bgnd).into(mBgImage);
+            }
+        }
+
+
+        if (mTitleBg != null) {
+            String pretbgi = sp.getString("pretbgi", null);
+            if (!TextUtils.isEmpty(pretbgi)) {
+                Glide.with(getApplicationContext()).load(pretbgi).into(mTitleBg);
+            }
+        }
+
+        String wifi = sp.getString("wifi", null);
+        LogUtil.i(" wifi => " + wifi);
+        LogUtil.i(" mWifi => " + mWifi);
+        if (mWifi != null && !TextUtils.isEmpty(wifi)) {
+            mWifi.setText(wifi);
+        }
     }
 
     protected void initTime() {
@@ -101,9 +132,9 @@ public class BaseActivity extends FragmentActivity {
         super.onResume();
         LogUtil.d(" onResume ");
         initTime();
-        if (mWifi != null) {
-            mWifi.setText("xxxxx Password : xxxxxxx");
-        }
+//        if (mWifi != null) {
+//            mWifi.setText("xxxxx Password : xxxxxxx");
+//        }
     }
 
     @Override
@@ -127,7 +158,6 @@ public class BaseActivity extends FragmentActivity {
         mTime = null;
         mDate = null;
     }
-
 
 
 }

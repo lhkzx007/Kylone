@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <com.kylone.view.ImageView
+        android:id="@+id/bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <include
         android:id="@+id/activity_title"
         layout="@layout/layout_activity_title" />
 
     <com.kylone.view.RelativeLayout
+        android:id="@+id/detail_content"
         android:layout_width="match_parent"
         android:layout_height="350px"
+        android:layout_below="@+id/activity_title"
         android:layout_marginLeft="50px"
         android:layout_marginRight="20px"
         android:layout_marginTop="40px">
@@ -26,8 +33,10 @@
             android:id="@+id/detail_doc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/detail_play"
+            android:layout_marginBottom="15px"
             android:layout_toRightOf="@+id/detail_img"
-            android:textSize="26px" />
+            android:textSize="22px" />
 
         <com.kylone.view.TextView
             android:id="@+id/detail_play"
@@ -38,7 +47,7 @@
             android:background="@drawable/bg_btn_play"
             android:focusable="true"
             android:gravity="center"
-            android:text="播    放"
+            android:text="Play"
             android:textColor="#ffffff"
             android:textSize="26px" />
     </com.kylone.view.RelativeLayout>
@@ -47,6 +56,7 @@
         android:id="@+id/detail_film"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/detail_content"
         android:layout_marginLeft="40px"
         android:layout_marginRight="40px"
         android:paddingBottom="30px"
@@ -54,4 +64,4 @@
         android:paddingRight="20px"
         android:paddingTop="30px" />
 
-</LinearLayout>
+</com.kylone.view.RelativeLayout>

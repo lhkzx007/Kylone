@@ -20,4 +20,6 @@
 
     <color name="seekbar_bg_color">#99ffffff</color>
     <color name="seekbar_pro_color">#ff00ff00</color>
+
+
 </resources>

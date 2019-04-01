@@ -2,9 +2,12 @@
 <com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home"
     android:orientation="vertical">
-
+    <ImageView
+        android:id="@+id/bg_img"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <include layout="@layout/layout_activity_title" />
 
     <com.kylone.player.MainVideoView

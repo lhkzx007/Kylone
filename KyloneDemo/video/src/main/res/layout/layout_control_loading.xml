@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <com.kylone.view.ImageView
-        android:src="@mipmap/bg_loading"
+        android:src="@drawable/bg_loading_it"
         android:id="@+id/loading_img_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +28,6 @@
                 android:id="@+id/loading_tv_name_t"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="即将播放"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:textSize="26px" />

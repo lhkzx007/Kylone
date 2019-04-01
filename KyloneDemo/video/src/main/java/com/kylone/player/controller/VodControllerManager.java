@@ -69,10 +69,11 @@ public class VodControllerManager extends ControllerManager implements IPlayerCo
 
 
     private void initControllerManager() {
-//        putController(MenuController.MENU_CONTROLLER, new MenuController(mContext, this));
-        mSeekController = new SeekController(mContext, this);
-        mSeekController.setIsLive(isLive);
-        putController(SeekController.SEEK_CONTROLLER, mSeekController);
+        if (!isLive) {
+            mSeekController = new SeekController(mContext, this);
+            mSeekController.setIsLive(isLive);
+            putController(SeekController.SEEK_CONTROLLER, mSeekController);
+        }
     }
 
     @Override
@@ -297,19 +298,7 @@ public class VodControllerManager extends ControllerManager implements IPlayerCo
         LogUtil.i("---------------------------------------------------------keyCode-------------" + keyCode);
         boolean uniqueDown = event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0;
         LogUtil.i("---------------------------------------------------------uniqueDown-------------" + uniqueDown);
-        if (uniqueDown) {
-
-            //可以响应的按键
-            boolean f = keyCode != KeyEvent.KEYCODE_VOLUME_UP && keyCode != KeyEvent.KEYCODE_VOLUME_DOWN
-                    && keyCode != KeyEvent.KEYCODE_BACK && keyCode != KeyEvent.KEYCODE_ESCAPE;
-            LogUtil.i("---------f----" + f);
-//            //判断是否在播放广告   // 判断是否正在加载页
-//            if ((isPlayAD || (isShowing() && TextUtils.equals(mCurrentControllerID, CONTROLLER_LOADING))) && f) {
-//                LogUtil.i(String.format(Locale.CHINA, "isPlayAD [%b] || controller [%s]", isPlayAD, mCurrentControllerID));
-//                return true;
-//            }
-
-
+        if (!isLive && uniqueDown) {
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT || keyCode == KeyEvent.KEYCODE_DPAD_RIGHT
                     || keyCode == KeyEvent.KEYCODE_DPAD_UP) {
                 show(SeekController.SEEK_CONTROLLER);
@@ -321,9 +310,6 @@ public class VodControllerManager extends ControllerManager implements IPlayerCo
                     executePlay();
                 }
                 show(SeekController.SEEK_CONTROLLER);
-                return true;
-            } else if (keyCode == KeyEvent.KEYCODE_MENU) {
-//                show(MenuController.MENU_CONTROLLER);
                 return true;
             }
         }

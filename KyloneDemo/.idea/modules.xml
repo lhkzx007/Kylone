@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KyloneDemo.iml" filepath="$PROJECT_DIR$/KyloneDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exoplayer/exoplayer.iml" filepath="$PROJECT_DIR$/exoplayer/exoplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logo/logo.iml" filepath="$PROJECT_DIR$/logo/logo.iml" />
       <module fileurl="file://$PROJECT_DIR$/shcapi/shcapi.iml" filepath="$PROJECT_DIR$/shcapi/shcapi.iml" />
       <module fileurl="file://$PROJECT_DIR$/video/video.iml" filepath="$PROJECT_DIR$/video/video.iml" />
     </modules>

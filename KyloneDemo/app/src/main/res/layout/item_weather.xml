@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#88000000"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="8px">
+
+    <com.kylone.view.RelativeLayout
+        android:layout_width="375px"
+        android:layout_height="165px">
+
+        <com.kylone.view.ImageView
+            android:id="@+id/weather_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <com.kylone.view.ImageView
+            android:id="@+id/weather_code"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:layout_marginLeft="12px"
+            android:layout_marginTop="12px"
+            android:background="#88000000" />
+
+        <com.kylone.view.TextView
+            android:id="@+id/weather_value"
+            android:layout_width="100px"
+            android:layout_height="70px"
+            android:layout_marginLeft="5px"
+            android:layout_marginTop="12px"
+            android:layout_toRightOf="@+id/weather_code"
+            android:background="#88000000"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="22px" />
+
+        <com.kylone.view.TextView
+            android:id="@+id/weather_info"
+            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_alignLeft="@+id/weather_code"
+            android:layout_alignRight="@+id/weather_value"
+            android:layout_below="@+id/weather_code"
+            android:layout_marginTop="5px"
+            android:background="#88000000"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="20px" />
+
+        <com.kylone.view.TextView
+            android:id="@+id/weather_time"
+            android:layout_width="match_parent"
+            android:layout_height="25px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8px"
+            android:layout_marginLeft="12px"
+            android:layout_marginRight="12px"
+            android:background="#88000000"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="16px" />
+
+    </com.kylone.view.RelativeLayout>
+
+    <com.kylone.view.TextView
+        android:id="@+id/weather_city"
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="#ffffff"
+        android:textSize="20px" />
+
+</com.kylone.view.LinearLayout>

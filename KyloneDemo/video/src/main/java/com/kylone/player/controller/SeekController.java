@@ -96,11 +96,14 @@ public class SeekController extends Controller {
         mSeekView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                LogUtil.i(" onProgressChanged -->  " + progress);
                 if (fromUser) {
                     mProgress = progress;
-//                mStartprogress = startprogress;
                     mHandler.removeCallbacksAndMessages(null);
+
+                    LogUtil.i(" onProgressChanged -->  " + progress);
+                    if (mTxtDuration != null) {
+                        mTxtDuration.setText(String.format("%s / %s", ExtraUitls.stringForTime(progress), ExtraUitls.stringForTime(mControl.getDuration())));
+                    }
                     mHandler.postDelayed(mSeekRunnable, 500);
                 }
             }

@@ -9,6 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/exoplayer" />
+            <option value="$PROJECT_DIR$/logo" />
             <option value="$PROJECT_DIR$/shcapi" />
             <option value="$PROJECT_DIR$/video" />
           </set>

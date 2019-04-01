@@ -30,6 +30,7 @@ import java.lang.ref.WeakReference;
 import java.util.Locale;
 import java.util.Map;
 
+import tv.danmaku.ijk.media.player.AndroidMediaPlayer;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
@@ -47,7 +48,7 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
     private boolean isSurfaceCreated;
 
     private String mPath;
-    private IjkMediaPlayer mMediaPlayer;
+    private IMediaPlayer mMediaPlayer;
     private SurfaceHolder mSurfaceHolder;
     private SurfaceView mSurfaceView;
     private int mBufferPercent;
@@ -194,6 +195,7 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
 
 
             isPrepared = false;
+//            mMediaPlayer = new AndroidMediaPlayer();
             mMediaPlayer = new IjkMediaPlayer();
             mMediaPlayer.setOnPreparedListener(this);
             mMediaPlayer.setOnVideoSizeChangedListener(this);
@@ -224,10 +226,10 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
     private void setOption() {
         if (mMediaPlayer!=null){
 
-            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "reconnect", 1);
-            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "min-frames", 100);
-            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 100 * 1024);
-            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5);
+//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "reconnect", 1);
+//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "min-frames", 100);
+//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 100 * 1024);
+//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5);
 
         }
     }

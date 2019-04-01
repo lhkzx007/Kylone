@@ -11,10 +11,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kylone.adapter.CommonAdapter;
@@ -29,6 +31,12 @@ import com.kylone.utils.ScreenParameter;
 import com.kylone.utils.ThreadManager;
 import com.kylone.view.LinearLayout;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -41,7 +49,7 @@ public class HomeActivity extends BaseActivity {
     private CommonAdapter adapter;
     private RecyclerView rv;
     private ArrayList<CommonInfo> items = new ArrayList<>();
-    private ImageView iv;
+    //    private ImageView iv;
     private RecyclerView rv_language;
     private CommonAdapter language_adapter;
     private ViewPager img_pager;
@@ -58,6 +66,8 @@ public class HomeActivity extends BaseActivity {
     private Handler handler;
     private boolean isAutoPlay;
     private int currentItem;
+    private TextView home_doc;
+    private ImageView home_img;
 
 
     @Override
@@ -68,8 +78,8 @@ public class HomeActivity extends BaseActivity {
         dotSpace = dotSize;
         initView();
         initPage();
-//        initDate();
-        test();
+        initDate();
+//        test();
     }
 
     @Override
@@ -81,7 +91,8 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        handler.removeCallbacksAndMessages(null);
+        if (handler != null)
+            handler.removeCallbacksAndMessages(null);
     }
 
     private void initPage() {
@@ -95,7 +106,8 @@ public class HomeActivity extends BaseActivity {
     private void initView() {
         rv = (RecyclerView) findViewById(R.id.home_list);
         llDot = (LinearLayout) findViewById(R.id.home_dot);
-        iv = (ImageView) findViewById(R.id.home_bg);
+        home_doc = (TextView) findViewById(R.id.home_doc);
+        home_img = (ImageView) findViewById(R.id.home_welcome_img);
         img_pager = (ViewPager) findViewById(R.id.home_image);
         img_pager.setFocusable(false);
 
@@ -127,46 +139,102 @@ public class HomeActivity extends BaseActivity {
         });
         language_adapter = new CommonAdapter(R.layout.item_language, rv_language);
         rv_language.setAdapter(language_adapter);
+        rv_language.setVisibility(View.GONE);
     }
 
     void initDate() {
+        imageTitleBeanList = new ArrayList<>();
+
+        ThreadManager.execute(new Runnable() {
+            @Override
+            public void run() {
+//                String url = "http://cms.kylone.blue/jack/test";
+//                InputStream in = null;
+//                try {
+//                    HttpURLConnection urlConn = (HttpURLConnection) new URL(url).openConnection();
+//                    urlConn.setConnectTimeout(3000);
+//                    urlConn.setReadTimeout(5000);
+//                    if (urlConn.getResponseCode() == 200) {
+//                        in = urlConn.getInputStream();
+//
+//                        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+//                        String str = null;
+//                        while ((str = br.readLine()) != null) {
+//                            imageTitleBeanList.add(str);
+//                        }
+//                        in.close();
+//                        br.close();
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    try {
+//                        if (in != null) {
+//                            in.close();
+//                            in = null;
+//                        }
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+
+
+                HandlerUtils.runUITask(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (imageTitleBeanList.size() == 0) {
+                            String prehdbg = ApiUtils.shApi.getConfigVal("premimg");
+                            imageTitleBeanList.add(prehdbg);
+                        }
+                        commit();
+                    }
+                });
+
+
+            }
+        });
+
         ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-//                    HandlerUtils.runUITask(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            String bgnd = ApiUtils.shApi.getConfigVal("bgnd");
-//                            Glide.with(HomeActivity.this).load(bgnd).into(iv);
-//                            if (mIcon != null) {
-//                                String logo = ApiUtils.shApi.getConfigVal("logo");
-//                                Glide.with(HomeActivity.this).load(logo).into(mIcon);
-//                            }
-//                        }
-//                    });
+
+                    // cms.kylone.blue/jack/
+
 
                     items.clear();
                     if (ApiUtils.shApi.contentlist != null) {
-                        shApiMain.ContentItem movie = ApiUtils.shApi.contentlist.get("item", "0");
-                        if (movie == null || movie.size() == 0) {
+                        shApiMain.ContentItem item = ApiUtils.shApi.contentlist.get("item", "0");
+                        if (item == null || item.size() == 0) {
                             LogUtil.i("无数据");
                             return;
                         }
-                        Enumeration<String> keys = movie.keys();
+                        SparseArray<CommonInfo> sparseArray = new SparseArray<CommonInfo>();
+
+                        Enumeration<String> keys = item.keys();
                         while (keys.hasMoreElements()) {
                             String key = keys.nextElement();
-                            shApiMain.ContentAttribute value = movie.get(key);
+                            shApiMain.ContentAttribute value = item.get(key);
+                            LogUtil.i(key + "  --  " + value);
                             CommonInfo contextInfo = new CommonInfo();
                             StringBuilder keyCommon = new StringBuilder();
                             StringBuilder valueCommon = new StringBuilder();
                             Enumeration<String> vKeys = value.keys();
                             int index = value.size();
+                            int i = 0;
                             while (vKeys.hasMoreElements()) {
                                 String vvkey = vKeys.nextElement();
                                 String vvalue = value.get(vvkey);
+                                if (TextUtils.equals("ord", vvkey)) {
+                                    i = Integer.valueOf(vvalue);
+                                    continue;
+                                }
+
+
                                 keyCommon.append(vvkey);
                                 valueCommon.append(vvalue);
+
+
                                 if (--index != 0) {
                                     keyCommon.append("|");
                                     valueCommon.append("|");
@@ -177,11 +245,15 @@ public class HomeActivity extends BaseActivity {
                                     contextInfo.setTitle(vvalue);
                                     contextInfo.setAction("kylone.intent.action." + vvalue);
                                 }
+//                                LogUtil.i(" --vvalue--  :" + vvalue);
                             }
                             LogUtil.i(" --zack--  :" + keyCommon.toString());
                             contextInfo.setValue(keyCommon.toString(), valueCommon.toString());
-                            items.add(contextInfo);
-
+                            sparseArray.append(i, contextInfo);
+                        }
+                        for (int j = 0; j < sparseArray.size(); j++) {
+                            int i = sparseArray.keyAt(j);
+                            items.add(sparseArray.get(i));
                         }
 
                         HandlerUtils.runUITask(new Runnable() {
@@ -191,6 +263,8 @@ public class HomeActivity extends BaseActivity {
                             }
                         });
                     }
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -199,7 +273,14 @@ public class HomeActivity extends BaseActivity {
         });
 
 
-//        String a = "{\"item\":[{\"title\":\"视频点播\",\"action\":\"kylone.intent.action.VodList\",\"image\":\"1\"},{\"title\":\"电视直播\",\"action\":\"kylone.intent.action.Live\",\"image\":\"2\"},{\"title\":\"设置\",\"image\":\"2\"}]}";
+        String prehdtx = ApiUtils.shApi.getConfigVal("txt");
+        if (home_doc != null && !TextUtils.isEmpty(prehdtx)) {
+            home_doc.setText(prehdtx);
+        }
+        String prehdbg = ApiUtils.shApi.getConfigVal("prehdbg");
+        if (home_img != null && !TextUtils.isEmpty(prehdtx)) {
+            Glide.with(this).load(prehdbg).into(home_img);
+        }
 
     }
 
@@ -268,11 +349,14 @@ public class HomeActivity extends BaseActivity {
         testData.add(test5);
 
 
-
         language_adapter.setData(testData);
 
 
         imageTitleBeanList = new ArrayList<>();
+
+        String prehdbg = ApiUtils.shApi.getConfigVal("premimg");
+        imageTitleBeanList.add(prehdbg);
+
         imageTitleBeanList.add("http://pic1.win4000.com/wallpaper/2017-12-26/5a41adbb5fa18.jpg");
         imageTitleBeanList.add("http://pic1.win4000.com/wallpaper/2017-12-26/5a41adbd6316c.jpg");
         imageTitleBeanList.add("http://pic1.win4000.com/wallpaper/2017-12-26/5a41adbed16b7.jpg");
@@ -411,6 +495,7 @@ public class HomeActivity extends BaseActivity {
         imgList = new ArrayList<ImageView>();
         for (int i = 0; i < count; i++) {
             ImageView ivImage = new ImageView(this);
+            ivImage.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             ivImage.setScaleType(ImageView.ScaleType.FIT_XY);
             Glide.with(this).load(imageTitleBeanList.get(i)).into(ivImage);
             // 将设置好的View添加到View列表中
@@ -425,6 +510,9 @@ public class HomeActivity extends BaseActivity {
         isLarge = new SparseBooleanArray();
         // 记得创建前先清空数据，否则会受遗留数据的影响。
         llDot.removeAllViews();
+        if (count < 2) {
+            return;
+        }
         for (int i = 0; i < count; i++) {
             View view = new View(this);
             view.setBackgroundResource(R.drawable.dot_unselected);

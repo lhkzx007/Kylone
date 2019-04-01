@@ -9,7 +9,8 @@
     <com.kylone.view.ImageView
         android:id="@+id/item_image"
         android:layout_width="200px"
-        android:layout_height="200px"
+        android:layout_height="190px"
+        android:scaleType="fitXY"
         android:layout_centerHorizontal="true" />
 
     <!--<com.kylone.view.TextView-->

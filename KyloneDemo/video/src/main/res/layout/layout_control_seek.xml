@@ -44,7 +44,9 @@
 
         <com.kylone.view.TextView
             android:id="@+id/seek_time"
-            android:layout_width="110px"
+            android:maxLines="1"
+            android:gravity="center_horizontal"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
             android:textColor="#aaaaaa"
             android:textSize="18px" />
