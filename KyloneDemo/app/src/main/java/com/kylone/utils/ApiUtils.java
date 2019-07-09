@@ -4,18 +4,21 @@ import android.app.Activity;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Binder;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.kylone.WelcomeActivity;
 import com.kylone.base.ComponentContext;
+import com.kylone.player.BuildConfig;
 import com.kylone.shcapi.shApiMain;
 import com.kylone.widget.MarqueeTextView;
 import com.kylone.widget.MsgDialog;
@@ -23,7 +26,12 @@ import com.kylone.widget.MsgDialog;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.Arrays;
+import java.util.Enumeration;
 
 /**
  * Created by Zack on 2018/4/19
@@ -31,11 +39,16 @@ import java.util.Arrays;
 
 public class ApiUtils {
     private static final String TAG = "ApiUtils";
+
+
     private static shApi m_api;
 
     private static String ip = "10.47.48.1";
 
     public static WeakReference<Activity> currentTopActivity = null;
+
+    public static String currentIp = "0.0.0.0";
+    public static String currentVersion = BuildConfig.VERSION_NAME;
 
     public static String getIp() {
         return ip;
@@ -329,6 +342,28 @@ public class ApiUtils {
     }
 
 
+    public static boolean verifyStoragePermissions(Activity context) {
+        final int REQUEST_EXTERNAL_STORAGE = 1;
+        String[] PERMISSIONS_STORAGE = {
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE"};
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(context,
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(context, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+                return false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+
     public static boolean checkPermission(Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             try {
@@ -362,5 +397,26 @@ public class ApiUtils {
                 return Settings.canDrawOverlays(context);
             }
         }
+    }
+
+
+
+    public static String getIpAddressString() {
+        try {
+            for (Enumeration<NetworkInterface> enNetI = NetworkInterface
+                    .getNetworkInterfaces(); enNetI.hasMoreElements(); ) {
+                NetworkInterface netI = enNetI.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = netI
+                        .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (inetAddress instanceof Inet4Address && !inetAddress.isLoopbackAddress()) {
+                        return inetAddress.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        return "0.0.0.0";
     }
 }

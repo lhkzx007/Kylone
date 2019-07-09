@@ -5,6 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 import com.kylone.base.ComponentContext;
+import com.kylone.base.Density;
 import com.kylone.utils.ApiUtils;
 
 import java.lang.ref.WeakReference;
@@ -18,6 +19,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ComponentContext.setContext(this);
+        Density.INSTANCE.setDensity(this,1280);
+
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

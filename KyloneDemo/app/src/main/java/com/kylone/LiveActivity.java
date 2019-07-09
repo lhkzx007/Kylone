@@ -4,6 +4,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -25,7 +26,7 @@ import com.kylone.utils.ApiUtils;
 import com.kylone.utils.Conver;
 import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.LogUtil;
-import com.kylone.utils.ScreenParameter;
+import com.kylone.base.Density;
 import com.kylone.utils.ThreadManager;
 
 import java.util.ArrayList;
@@ -184,7 +185,7 @@ public class LiveActivity extends BaseActivity {
         item.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                outRect.bottom = ScreenParameter.getFitSize(10);
+                outRect.bottom = Density.INSTANCE.dp2px(10);
             }
         });
         item.setLayoutManager(new LinearLayoutManager(this));
@@ -196,7 +197,7 @@ public class LiveActivity extends BaseActivity {
         item_title.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                outRect.bottom = ScreenParameter.getFitSize(5);
+                outRect.bottom = Density.INSTANCE.dp2px(5);
             }
         });
         item_title.setLayoutManager(new LinearLayoutManager(this));
@@ -387,9 +388,9 @@ public class LiveActivity extends BaseActivity {
                 item.setVisibility(View.GONE);
             } else {
                 handler.removeCallbacksAndMessages(null);
-                params.width = ScreenParameter.getFitSize(530);
-                params.height = ScreenParameter.getFitHeight(300);
-                params.setMargins(0, ScreenParameter.getFitSize(60), ScreenParameter.getFitSize(90), 0);
+                params.width = Density.INSTANCE.dp2px(530);
+                params.height = Density.INSTANCE.dp2px(300);
+                params.setMargins(0, Density.INSTANCE.dp2px(60), Density.INSTANCE.dp2px(90), 0);
                 // 播放器小窗口
                 params.addRule(RelativeLayout.BELOW, R.id.activity_title);
                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);

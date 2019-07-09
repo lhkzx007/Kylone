@@ -1,13 +1,16 @@
 package com.kylone;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kylone.base.BaseActivity;
+import com.kylone.base.Util;
 import com.kylone.player.R;
 import com.kylone.utils.ApiUtils;
 import com.kylone.utils.ApiUtils.shApi;
@@ -59,6 +63,9 @@ public class WelcomeActivity extends BaseActivity {
             Glide.with(getApplicationContext()).load(mBootimg).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgWelcome);
         }
 
+
+        ApiUtils.verifyStoragePermissions(this);
+
         if (!ApiUtils.checkPermission(getApplicationContext())) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
             intent.setData(Uri.parse("package:" + getPackageName()));
@@ -73,12 +80,33 @@ public class WelcomeActivity extends BaseActivity {
 //                new PasscodeDialog(WelcomeActivity.this).show("Input Password");
 //            }
 //        },5000);
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         targetHost = sp.getString("ip", ApiUtils.getIp());
         ApiUtils.setIp(targetHost);
-        connectServer();
+        if (!Util.Debug) {
+            connectServer();
+        } else {
+            // test code
+            HandlerUtils.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    IntentUtils.startActivityForAction("kylone.intent.action.Home");
+                    finish();
+                }
+            }, 2000);
+        }
     }
 
     private void showEditHost() {
+        if (isDestroyed()) {
+            return;
+        }
         HostDialog hostDialog = new HostDialog(this);
         hostDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -129,6 +157,9 @@ public class WelcomeActivity extends BaseActivity {
                     return;
                 }
                 LogUtil.i(" shconnect(): launched");
+
+
+                ApiUtils.currentIp = ApiUtils.getIpAddressString();
 
                 task = new TimerTask() {
                     @Override
@@ -205,6 +236,7 @@ public class WelcomeActivity extends BaseActivity {
             task = null;
         }
     }
+
 
     private void close(String log) {
         final String info = log + " ,  Exit the page after 5 seconds.";

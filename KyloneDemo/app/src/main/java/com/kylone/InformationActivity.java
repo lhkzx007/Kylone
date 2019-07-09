@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,9 +19,8 @@ import com.kylone.shcapi.shApiMain;
 import com.kylone.utils.ApiUtils;
 import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.LogUtil;
-import com.kylone.utils.ScreenParameter;
+import com.kylone.base.Density;
 import com.kylone.utils.ThreadManager;
-import com.kylone.view.ImageView;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -54,10 +54,10 @@ public class InformationActivity extends BaseActivity {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 //从第二个条目开始，距离上方Item的距离
-                outRect.left = ScreenParameter.getFitWidth(7);
-                outRect.right = ScreenParameter.getFitWidth(7);
-                outRect.top = ScreenParameter.getFitWidth(7);
-                outRect.bottom = ScreenParameter.getFitWidth(7);
+                outRect.left = Density.INSTANCE.dp2px(7);
+                outRect.right = Density.INSTANCE.dp2px(7);
+                outRect.top = Density.INSTANCE.dp2px(7);
+                outRect.bottom = Density.INSTANCE.dp2px(7);
             }
         });
         GridLayoutManager layoutManage = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);

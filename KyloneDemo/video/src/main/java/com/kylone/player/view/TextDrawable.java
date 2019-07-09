@@ -18,7 +18,7 @@ import android.text.TextPaint;
 import android.util.Log;
 import android.util.TypedValue;
 
-import com.kylone.utils.ScreenParameter;
+import com.kylone.base.Density;
 
 
 public class TextDrawable extends Drawable {

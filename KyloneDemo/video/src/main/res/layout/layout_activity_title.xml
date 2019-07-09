@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_title"
     android:layout_width="match_parent"
-    android:layout_height="60px">
+    android:layout_height="60dp">
 
     <ImageView
         android:id="@+id/title_bg_img"
@@ -10,42 +10,42 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
-    <com.kylone.view.TextView
+    <TextView
         android:id="@+id/title_wifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/title_line"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="30px"
+        android:layout_marginLeft="30dp"
         android:textColor="@android:color/white"
-        android:textSize="20px" />
+        android:textSize="20sp" />
 
 
-    <com.kylone.view.TextView
+    <TextView
         android:id="@+id/title_time"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_above="@+id/title_line"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
-        android:textSize="38px" />
+        android:textSize="38sp" />
 
-    <com.kylone.view.TextView
+    <TextView
         android:id="@+id/title_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/title_line"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="30px"
+        android:layout_marginRight="30dp"
         android:textColor="@android:color/white"
-        android:textSize="20px" />
+        android:textSize="20sp" />
 
-    <com.kylone.view.View
+    <View
         android:id="@+id/title_line"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="2dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10px"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_title_line" />
 
-</com.kylone.view.RelativeLayout>
+</RelativeLayout>

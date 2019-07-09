@@ -17,23 +17,23 @@
         android:background="#000000"
         android:visibility="gone">
 
-        <com.kylone.view.ImageView
-            android:layout_marginTop="200px"
+        <ImageView
+            android:layout_marginTop="200dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/img_warning"
-            android:layout_width="180px"
-            android:layout_height="158px"
+            android:layout_width="180dp"
+            android:layout_height="158dp"
             android:src="@mipmap/ic_warning" />
 
-        <com.kylone.view.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_warning"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15px"
+            android:layout_marginTop="15dp"
             android:text="This device is currently disabled， Please contact the provider !"
             android:textColor="#ffffff"
-            android:textSize="26px"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

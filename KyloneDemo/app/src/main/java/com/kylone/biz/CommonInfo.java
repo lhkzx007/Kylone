@@ -38,7 +38,12 @@ public class CommonInfo {
         }
     }
 
-    private void parse(String key, String value) {
+    /**
+     * key - value
+     * @param key    split - "\\|"
+     * @param value  split - "\\|"
+     */
+    public void parse(String key, String value) {
         if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(value)) {
             String[] keys = key.split("\\|");
             String[] values = value.split("\\|");

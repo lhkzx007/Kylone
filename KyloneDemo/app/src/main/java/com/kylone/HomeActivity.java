@@ -16,27 +16,22 @@ import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kylone.adapter.CommonAdapter;
 import com.kylone.base.BaseActivity;
+import com.kylone.base.Density;
+import com.kylone.base.Util;
 import com.kylone.biz.CommonInfo;
 import com.kylone.player.R;
 import com.kylone.shcapi.shApiMain;
 import com.kylone.utils.ApiUtils;
 import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.LogUtil;
-import com.kylone.utils.ScreenParameter;
 import com.kylone.utils.ThreadManager;
-import com.kylone.view.LinearLayout;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -74,12 +69,15 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_home);
         super.onCreate(savedInstanceState);
-        dotSize = ScreenParameter.getFitSize(8);
+        dotSize = Density.INSTANCE.dp2px(8);
         dotSpace = dotSize;
         initView();
         initPage();
-        initDate();
-//        test();
+        if (Util.Debug) {
+            test();
+        } else {
+            initDate();
+        }
     }
 
     @Override
@@ -115,10 +113,10 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 //从第二个条目开始，距离上方Item的距离
-                outRect.left = ScreenParameter.getFitWidth(7);
-                outRect.right = ScreenParameter.getFitWidth(7);
-                outRect.top = ScreenParameter.getFitWidth(7);
-                outRect.bottom = ScreenParameter.getFitWidth(7);
+                outRect.left = Density.INSTANCE.dp2px(7);
+                outRect.right = Density.INSTANCE.dp2px(7);
+                outRect.top = Density.INSTANCE.dp2px(7);
+                outRect.bottom = Density.INSTANCE.dp2px(7);
             }
         });
         GridLayoutManager layoutManage = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
@@ -133,7 +131,7 @@ public class HomeActivity extends BaseActivity {
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 int index = parent.getChildAdapterPosition(view);
                 if (index > 0) {
-                    outRect.left = ScreenParameter.getFitWidth(30);
+                    outRect.left = Density.INSTANCE.dp2px(30);
                 }
             }
         });
@@ -255,6 +253,11 @@ public class HomeActivity extends BaseActivity {
                             int i = sparseArray.keyAt(j);
                             items.add(sparseArray.get(i));
                         }
+                        CommonInfo info4 = new CommonInfo();
+                        info4.setTitle("设置");
+                        info4.setImage(String.valueOf(R.mipmap.icon_setting));
+                        info4.setAction("kylone.intent.action.Settings");
+                        items.add(info4);
 
                         HandlerUtils.runUITask(new Runnable() {
                             @Override
@@ -305,9 +308,9 @@ public class HomeActivity extends BaseActivity {
         infos.add(info3);
 
         CommonInfo info4 = new CommonInfo();
-        info4.setTitle("关于");
-        info4.setImage(String.valueOf(R.mipmap.home_item_4));
-        info4.setAction("kylone.intent.action.Information");
+        info4.setTitle("设置");
+        info4.setImage(String.valueOf(R.mipmap.icon_setting));
+        info4.setAction("kylone.intent.action.Settings");
         infos.add(info4);
 
         adapter.setData(infos);
@@ -361,8 +364,12 @@ public class HomeActivity extends BaseActivity {
         imageTitleBeanList.add("http://pic1.win4000.com/wallpaper/2017-12-26/5a41adbd6316c.jpg");
         imageTitleBeanList.add("http://pic1.win4000.com/wallpaper/2017-12-26/5a41adbed16b7.jpg");
         imageTitleBeanList.add("http://pic1.win4000.com/wallpaper/2017-12-26/5a41adc32219d.jpg");
-
-        commit();
+        HandlerUtils.runUITask(new Runnable() {
+            @Override
+            public void run() {
+                commit();
+            }
+        });
     }
 
     @Override

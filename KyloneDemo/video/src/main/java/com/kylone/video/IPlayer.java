@@ -49,42 +49,12 @@ public interface IPlayer {
     int STATE_PLAYBACK_COMPLETED = 5; // 播放完成
     int STATE_CHANGE_TYPE = 6; // 播放完成
 
-    int PLAY_TYPE_PREVUE = 0;                                //预告片
-    int PLAY_TYPE_FEATURE_FILM = 1;                  //正片
-    int PLAY_TYPE_CASE_FILM = 2;                          //抢先看
-    int PLAY_TYPE_TENCENT_QE = 3;                      //企鹅会员
-    int PLAY_TYPE_TENCENT_DJ = 4;                       //鼎级剧场
-    int PLAY_TYPE_TENCENT_TY = 5;                      //体育会员
-    int PLAY_TYPE_TENCENT_QD = 6;                     //企鹅影院（腾讯会员）+鼎级剧场（腾讯会员）
-    int PLAY_TYPE_TENCENT_QT = 7;                     //企鹅影院（腾讯会员）+体育会员（腾讯会员）
-    int PLAY_TYPE_TENCENT_DT = 8;                     //鼎级剧场（腾讯会员）+体育会员（腾讯会员）
-    int PLAY_TYPE_TENCENT_QDT = 9;                  //企鹅影院（腾讯会员）+鼎级剧场（腾讯会员）+体育会员（腾讯会员）
-    int PLAY_TYPE_DD = 11;                  //单点
-    int PLAY_TYPE_BY = 10;                  //包月
-    int PLAY_TYPE_DDBY = 12;                  //单点+包月
-    int PLAY_TYPE_QUAN = 13;                  //用券
-    String KEY_INTENT_TRY = "isTry";                        //是否试看
+
     String KEY_INTENT_POSITION = "startPosition";           //开始播放的位置
-    String KEY_INTENT_MEDIA_TYPE = "mediaType";             // 播放类型 1直播 ,2 点播 ,3 轮播
-    String KEY_TITLE = "title";                             // 当前播放影片的名
-    String KEY_INTENT_PREVUE = "prevue";
-    String KEY_INTENT_UUID = "uuid";                        //影片的UUID
-    String KEY_INTENT_NUM = "setnum";                       //影片的集数
-    String KEY_SCANMODE = "scanModel";
-    String KEY_INTENT_VIP = "isVip";                        //用于电视剧限免判断 value 1 收费  /  2 免费
     String KEY_DEFINITION = "definition";                   //播放器清晰度预设
-    String KEY_INTENT_LUNBO = "isLunbo";                    //是否轮播
-    String KEY_INTENT_LUNBO_POSITION = "lunbo_position";    //轮播起始位置
-    String KEY_SET_INDEX = "setIndex"; //当前播放集数的序列号  , (在总集数中的第几集)
 
-
-    int MEDIA_TYPE_LIVE = 1;              //直播
-    int MEDIA_TYPE_VOD = 2;              //点播
-    int MEDIA_TYPE_LOOP_VOD = 8; //轮播
-
-
-    int INFO_MSG_START_CHARGE = 100001;  //开始调起购买页面
-
+    String SETTING_SOFT_DECODE = "open_soft_decode";
+    String SETTING_SUBTITLE_SHOW = "open_subtitle_show";
 
     /**
      * 清晰度解析为空

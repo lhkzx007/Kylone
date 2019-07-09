@@ -4,17 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kylone.adapter.CommonAdapter;
 import com.kylone.base.BaseActivity;
+import com.kylone.base.Density;
+import com.kylone.base.Util;
 import com.kylone.biz.CommonInfo;
 import com.kylone.player.R;
 import com.kylone.shcapi.shApiMain;
@@ -23,10 +28,10 @@ import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.IntentUtils;
 import com.kylone.utils.LogUtil;
 import com.kylone.utils.MediaPerference;
-import com.kylone.utils.ScreenParameter;
-import com.kylone.view.ImageView;
+import com.kylone.base.Density;
 import com.kylone.widget.PasscodeDialog;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -57,7 +62,9 @@ public class DetailActivity extends BaseActivity implements PasscodeDialog.OnEdi
         initView();
         initData();
         initListener();
-        initContent();
+        if (!Util.Debug) {
+            initContent();
+        }
 
     }
 
@@ -70,7 +77,10 @@ public class DetailActivity extends BaseActivity implements PasscodeDialog.OnEdi
 //
 //                    return;
 //                }
-
+                if (Util.Debug){
+                    play();
+                    return;
+                }
                 LogUtil.i(" pmvod  =" + pmvod);
                 String r = ApiUtils.shApi.shdrmquery(pmvod, "vod", "probe", pmid, uuid, pcode);
                 LogUtil.i(" probe =  " + r);
@@ -110,7 +120,14 @@ public class DetailActivity extends BaseActivity implements PasscodeDialog.OnEdi
     }
 
     private void play() {
-        String newUrl = shApiMain.shdrmtokenize(url, uuid);
+
+        String newUrl ;
+        if (Util.Debug){
+            newUrl =  Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"france2.ts")).toString();
+        }else{
+            newUrl = shApiMain.shdrmtokenize(url, uuid);
+        }
+
         LogUtil.i(" url -> " + newUrl);
         Intent intent = new Intent(DetailActivity.this, PlayActivity.class);
         intent.putExtra("url", newUrl);
@@ -146,7 +163,7 @@ public class DetailActivity extends BaseActivity implements PasscodeDialog.OnEdi
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 if (parent.getChildAdapterPosition(view) > 0) {
-                    outRect.left = ScreenParameter.getFitWidth(14);
+                    outRect.left = Density.INSTANCE.dp2px(14);
                 }
             }
         });
@@ -218,8 +235,6 @@ public class DetailActivity extends BaseActivity implements PasscodeDialog.OnEdi
         tv_doc.setText(builder);
         Glide.with(this).fromString().load(logo).into(tv_img);
 
-//        String films = "{\"item\":[{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"湮灭\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516914607.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2007/0/base/stream.ts|湮灭\"},{\"title\":\"起跑线\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2517518428.webp\",\"key\":\"url|title\",\"value\":\"http://cms.kylone.blue/movie/1/doublesniper.mp4|起跑线\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"},{\"title\":\"头号玩家\",\"action\":\"kylone.intent.action.Detail\",\"image\":\"https://img1.doubanio.com/view/photo/m/public/p2516578307.webp\",\"key\":\"url|title\",\"value\":\"http://str.kylone.blue:4750/2000/0/base/stream.ts|头号玩家\"}]}";
-//        adapterFilm.setData(CommonInfo.parseInfo(films));
     }
 
 

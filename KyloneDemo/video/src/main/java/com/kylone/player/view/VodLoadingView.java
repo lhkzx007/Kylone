@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,7 @@ import com.kylone.player.callback.MenuControl;
 import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.LoadLoadingPageUtils;
 import com.kylone.utils.LogUtil;
-import com.kylone.utils.ScreenParameter;
+import com.kylone.base.Density;
 import com.kylone.video.R;
 
 
@@ -129,9 +131,12 @@ public class VodLoadingView extends FrameLayout {
         if (parent != null) {
             int w = ((ViewGroup) parent).getWidth();
             int h = ((ViewGroup) parent).getHeight();
+
+            DisplayMetrics dm = getResources().getDisplayMetrics();
+
             LogUtil.i(w + " :" + h);
-            float sw = (float) w / ScreenParameter.getScreenWidth();
-            float sh = (float) h / ScreenParameter.getScreenHeight();
+            float sw = (float) w /  dm.widthPixels;
+            float sh = (float) h / dm.heightPixels;
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) runRoot.getLayoutParams();
 
             if (sw < 0.5) {

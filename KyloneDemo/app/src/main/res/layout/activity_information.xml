@@ -18,34 +18,34 @@
 
     <com.kylone.view.RecyclerView
         android:id="@+id/information_infos"
-        android:layout_width="640px"
+        android:layout_width="640dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_title"
-        android:layout_marginTop="93px"
+        android:layout_marginTop="93dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingLeft="60px"
-        android:paddingRight="35px" />
+        android:paddingLeft="60dp"
+        android:paddingRight="35dp" />
 
-    <com.kylone.view.ImageView
+    <ImageView
         android:id="@+id/information_img"
-        android:layout_width="539px"
-        android:layout_height="339px"
+        android:layout_width="539dp"
+        android:layout_height="339dp"
         android:layout_below="@+id/activity_title"
-        android:layout_marginTop="100px"
+        android:layout_marginTop="100dp"
         android:layout_toRightOf="@+id/information_infos"
         android:scaleType="fitXY" />
 
-    <com.kylone.view.TextView
+    <TextView
         android:id="@+id/information_introduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/information_img"
         android:layout_alignRight="@+id/information_img"
         android:layout_below="@+id/information_img"
-        android:layout_marginTop="10px"
+        android:layout_marginTop="10dp"
         android:maxLines="5"
-        android:textSize="20px" />
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

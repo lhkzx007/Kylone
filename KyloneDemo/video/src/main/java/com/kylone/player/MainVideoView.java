@@ -20,17 +20,18 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.kylone.player.controller.ControllerManager;
 import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.LogUtil;
+import com.kylone.utils.MediaPerference;
 import com.kylone.utils.UIRunnable;
 import com.kylone.video.IPlayer;
 import com.kylone.video.IPlayerInterface;
 import com.kylone.video.IVideoFactory;
 import com.kylone.video.VideoUrl;
-import com.kylone.view.FrameLayout;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class MainVideoView extends FrameLayout implements IPlayer, IPlayerInterf
 //    private static final String TRY_HINT_DEFAULT = "正在试看，按 <font color='#00fe00'>OK</font> 键购买后即可完整观看";
 //    private static final String TOP_HINT_DEFAULT = "VIP免广告 , 按 <font color='#ff7e00'>OK</font> 开通";
 
-    protected String playType = VIDEO_SYSTEM;
+    protected String playType = VIDEO_NATIVE;
     protected int mCurrentState = STATE_IDLE;
     protected int mTargetState = STATE_IDLE;
     protected ControllerManager mControllerManager;
@@ -483,7 +484,7 @@ public class MainVideoView extends FrameLayout implements IPlayer, IPlayerInterf
                 }
                 mCurrentState = STATE_PREPARING;
                 mTargetState = STATE_PREPARING;
-
+                playType = MediaPerference.getBoolean(IPlayer.SETTING_SOFT_DECODE)?VIDEO_NATIVE:VIDEO_SYSTEM;
                 player = IVideoFactory.createIVideo(getContext(), playType);
 //                player.setAudioStreamType(AudioManager.STREAM_ALARM);
                 addPlayerView(player);

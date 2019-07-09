@@ -138,6 +138,17 @@
             </intent-filter>
         </activity>
 
+        <!-- Settings -->
+        <activity
+            android:name="com.kylone.SettingsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="kylone.intent.action.Settings" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

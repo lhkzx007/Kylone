@@ -6,18 +6,18 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <com.kylone.view.ImageView
+    <ImageView
         android:id="@+id/item_image"
         android:scaleType="fitXY"
-        android:layout_width="76px"
-        android:layout_height="50px" />
+        android:layout_width="76dp"
+        android:layout_height="50dp" />
 
-    <com.kylone.view.TextView
+    <TextView
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5px"
+        android:layout_marginTop="5dp"
         android:text="china"
         android:textColor="#ffffff"
-        android:textSize="14px" />
+        android:textSize="14sp" />
 </LinearLayout>

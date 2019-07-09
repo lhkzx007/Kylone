@@ -1,1 +1,1 @@
-include ':app', ':video', ':shcapi', ':exoplayer', ':logo'
+include ':app', ':video', ':shcapi', ':exoplayer', ':logo', ':base'

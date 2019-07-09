@@ -1,12 +1,16 @@
 package com.kylone;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 
 import com.kylone.base.BaseActivity;
 import com.kylone.player.MainVideoView;
 import com.kylone.player.R;
 import com.kylone.player.callback.SimpleControlListener;
 import com.kylone.player.controller.VodControllerManager;
+
+import java.io.File;
 
 /**
  * Created by zack
@@ -47,7 +51,6 @@ public class PlayActivity extends BaseActivity {
         });
         Bundle arge = new Bundle();
         arge.putString("url", getIntent().getStringExtra("url"));
-//        arge.putString("url", "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         arge.putString("title", getIntent().getStringExtra("txt"));
         vod.changArguments(arge);
 

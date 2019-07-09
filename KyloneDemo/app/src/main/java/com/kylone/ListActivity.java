@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.kylone.adapter.CommonAdapter;
 import com.kylone.base.BaseActivity;
+import com.kylone.base.Util;
 import com.kylone.biz.CommonInfo;
 import com.kylone.player.R;
 import com.kylone.shcapi.shApiMain;
@@ -18,7 +19,7 @@ import com.kylone.utils.ApiUtils;
 import com.kylone.utils.Conver;
 import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.LogUtil;
-import com.kylone.utils.ScreenParameter;
+import com.kylone.base.Density;
 import com.kylone.utils.ThreadManager;
 
 import java.util.ArrayList;
@@ -45,8 +46,11 @@ public class ListActivity extends BaseActivity {
         initView();
         initAdapter();
         initListener();
-//        test();
-        initDate();
+        if (Util.Debug) {
+            test();
+        } else {
+            initDate();
+        }
     }
 
     private void initView() {
@@ -55,6 +59,12 @@ public class ListActivity extends BaseActivity {
     }
 
     private void initAdapter() {
+        itemR.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                outRect.bottom = Density.INSTANCE.dp2px(2);
+            }
+        });
         itemR.setLayoutManager(new LinearLayoutManager(this));
         adapterItem = new CommonAdapter(R.layout.list_item, itemR);
         adapterItem.openSingleSelect();
@@ -65,10 +75,10 @@ public class ListActivity extends BaseActivity {
         contentR.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                outRect.left = ScreenParameter.getFitWidth(7);
-                outRect.right = ScreenParameter.getFitWidth(7);
-                outRect.top = ScreenParameter.getFitHeight(9);
-                outRect.bottom = ScreenParameter.getFitHeight(9);
+                outRect.left = Density.INSTANCE.dp2px(7);
+                outRect.right = Density.INSTANCE.dp2px(7);
+                outRect.top = Density.INSTANCE.dp2px(9);
+                outRect.bottom = Density.INSTANCE.dp2px(9);
             }
         });
         contentR.setLayoutManager(new GridLayoutManager(this, 5));

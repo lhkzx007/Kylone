@@ -4,8 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
-import com.kylone.view.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

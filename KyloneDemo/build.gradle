@@ -28,6 +28,11 @@ allprojects {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        flatDir {
+            dirs = [
+                    '../video/libs'
+            ]
+        }
     }
 }
 
@@ -37,8 +42,8 @@ task clean(type: Delete) {
 
 configurations.all {
     resolutionStrategy {
-        force "com.android.support:appcompat-v7:27.1.1"
-        force "com.android.support:support-v4:27.1.1"
+        force "com.android.support:appcompat-v7:${configInfo.supportVersion}"
+        force "com.android.support:support-v4:${configInfo.supportVersion}"
     }
 }
 

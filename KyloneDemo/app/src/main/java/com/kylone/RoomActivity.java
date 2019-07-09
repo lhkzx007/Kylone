@@ -10,7 +10,7 @@ import com.kylone.adapter.CommonAdapter;
 import com.kylone.base.BaseActivity;
 import com.kylone.biz.CommonInfo;
 import com.kylone.player.R;
-import com.kylone.utils.ScreenParameter;
+import com.kylone.base.Density;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +39,10 @@ public class RoomActivity extends BaseActivity {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 //从第二个条目开始，距离上方Item的距离
-                outRect.left = ScreenParameter.getFitWidth(7);
-                outRect.right = ScreenParameter.getFitWidth(7);
-                outRect.top = ScreenParameter.getFitWidth(7);
-                outRect.bottom = ScreenParameter.getFitWidth(7);
+                outRect.left = Density.INSTANCE.dp2px(7);
+                outRect.right = Density.INSTANCE.dp2px(7);
+                outRect.top = Density.INSTANCE.dp2px(7);
+                outRect.bottom = Density.INSTANCE.dp2px(7);
             }
         });
         GridLayoutManager layoutManage = new GridLayoutManager(this, 5, GridLayoutManager.VERTICAL, false);

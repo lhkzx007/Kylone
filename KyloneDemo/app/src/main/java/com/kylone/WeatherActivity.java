@@ -17,7 +17,7 @@ import com.kylone.shcapi.shApiMain;
 import com.kylone.utils.ApiUtils;
 import com.kylone.utils.HandlerUtils;
 import com.kylone.utils.LogUtil;
-import com.kylone.utils.ScreenParameter;
+import com.kylone.base.Density;
 import com.kylone.utils.ThreadManager;
 
 import java.util.ArrayList;
@@ -48,10 +48,10 @@ public class WeatherActivity extends BaseActivity {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 //从第二个条目开始，距离上方Item的距离
-                outRect.left = ScreenParameter.getFitWidth(7);
-                outRect.right = ScreenParameter.getFitWidth(7);
-                outRect.top = ScreenParameter.getFitWidth(7);
-                outRect.bottom = ScreenParameter.getFitWidth(7);
+                outRect.left = Density.INSTANCE.dp2px(7);
+                outRect.right = Density.INSTANCE.dp2px(7);
+                outRect.top = Density.INSTANCE.dp2px(7);
+                outRect.bottom = Density.INSTANCE.dp2px(7);
             }
         });
         GridLayoutManager layoutManage = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="330px"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="330dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#333333"
-    android:padding="25px">
+    android:padding="25dp">
 
-    <com.kylone.view.TextView
+    <TextView
         android:id="@+id/dialog_pc_info"
         android:layout_width="match_parent"
-        android:layout_height="200px"
+        android:layout_height="200dp"
         android:gravity="center"
-        android:padding="10px"
+        android:padding="10dp"
         android:background="#0000"
         android:textColor="#FFFFFF"
-        android:textSize="20px" />
+        android:textSize="20sp" />
 
-    <com.kylone.view.EditText
+    <EditText
         android:id="@+id/dialog_pc_et"
         android:background="#cccccc"
         android:textColor="#333333"
         android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:textSize="30px"
-        android:layout_marginBottom="5px"
+        android:layout_height="60dp"
+        android:textSize="30sp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:enabled="false"
         android:focusable="false"
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -51,13 +51,13 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:onClick="click"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="0"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,10 +66,10 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="←"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -79,7 +79,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,13 +88,13 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="1"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -103,12 +103,12 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="2"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -117,10 +117,10 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="3"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -130,7 +130,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -139,13 +139,13 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="4"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -154,12 +154,12 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="5"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -168,10 +168,10 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="6"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -181,7 +181,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -190,13 +190,13 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="7"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -205,12 +205,12 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="8"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/dialog_pc_9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -219,13 +219,13 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="10px"
+                android:padding="10dp"
                 android:text="9"
                 android:textColor="#FFFFFF"
-                android:textSize="20px" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-</com.kylone.view.LinearLayout>
+</LinearLayout>

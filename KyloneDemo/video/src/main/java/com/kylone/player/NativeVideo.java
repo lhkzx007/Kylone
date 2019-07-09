@@ -190,32 +190,32 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
         try {
             //加载native库
 
-            IjkMediaPlayer.loadLibrariesOnce(null);
-            IjkMediaPlayer.native_profileBegin("libijkplayer.so");
+//            IjkMediaPlayer.loadLibrariesOnce(null);
+//            IjkMediaPlayer.native_profileBegin("libijkplayer.so");
 
 
             isPrepared = false;
 //            mMediaPlayer = new AndroidMediaPlayer();
-            mMediaPlayer = new IjkMediaPlayer();
-            mMediaPlayer.setOnPreparedListener(this);
-            mMediaPlayer.setOnVideoSizeChangedListener(this);
-            mMediaPlayer.setOnCompletionListener(this);
-            mMediaPlayer.setOnErrorListener(this);
-            mMediaPlayer.setOnInfoListener(this);
-            mMediaPlayer.setOnSeekCompleteListener(this);
-            mMediaPlayer.setOnBufferingUpdateListener(this);
-            setOption();
-
+            IjkMediaPlayer ijkMediaPlayer = new IjkMediaPlayer();
+            ijkMediaPlayer.setOnPreparedListener(this);
+            ijkMediaPlayer.setOnVideoSizeChangedListener(this);
+            ijkMediaPlayer.setOnCompletionListener(this);
+            ijkMediaPlayer.setOnErrorListener(this);
+            ijkMediaPlayer.setOnInfoListener(this);
+            ijkMediaPlayer.setOnSeekCompleteListener(this);
+            ijkMediaPlayer.setOnBufferingUpdateListener(this);
+            setOption(ijkMediaPlayer);
+            mMediaPlayer = ijkMediaPlayer;
 
             //开启硬解码
 //            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
 //            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-auto-rotate", 1);
 //            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-handle-resolution-change", 1);
 
-            mMediaPlayer.setDisplay(mSurfaceHolder);
+            ijkMediaPlayer.setDisplay(mSurfaceHolder);
             mDuration = -1;
-            mMediaPlayer.setDataSource(mContext, Uri.parse(mPath), null);
-            mMediaPlayer.prepareAsync();
+            ijkMediaPlayer.setDataSource(mContext, Uri.parse(mPath), null);
+            ijkMediaPlayer.prepareAsync();
             LogUtil.i(TAG, "开始异步加载MediaPlayer");
             isNeedOpen = false;
         } catch (Exception e) {
@@ -223,14 +223,25 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
         }
     }
 
-    private void setOption() {
+    private void setOption(IjkMediaPlayer mMediaPlayer) {
         if (mMediaPlayer!=null){
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"analyzemaxduration",100);
+            //播放重连次数
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "reconnect", 1);
+//            //设置播放前的探测时间 1,达到首屏秒开效果
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"analyzeduration",1);
 
-//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "reconnect", 1);
+            //播放前的探测Size，默认是1M, 改小一点会出画面更快
+//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "probesize", 1024 * 10*10);
 //            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "min-frames", 100);
-//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 100 * 1024);
-//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5);
+//            //最大缓冲大小,单位kb
+//            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-buffer-size", 80 * 1024);
 
+            //跳帧处理,放CPU处理较慢时，进行跳帧处理，保证播放流程，画面和声音同步
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5);
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "videotoolbox", 0);
+//            设置是否开启环路过滤: 0开启，画面质量高，解码开销大，48关闭，画面质量差点，解码开销小
+            mMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);
         }
     }
 
@@ -342,7 +353,7 @@ public class NativeVideo extends IVideoView implements IMediaPlayer.OnPreparedLi
     private boolean _release() {
         try {
             if (mMediaPlayer != null) {
-                IjkMediaPlayer.native_profileEnd();
+//                IjkMediaPlayer.native_profileEnd();
                 isPrepared = false;
                 mDuration = -1;
 //                mMediaPlayer.setDisplay(null);

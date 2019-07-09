@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
         <!--android:src="@mipmap/bg_loading"-->
-    <com.kylone.view.ImageView
+    <ImageView
     android:src="@drawable/bg_loading_it"
         android:id="@+id/loading_img_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
-    <com.kylone.view.RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20px"
+        android:layout_marginBottom="20dp"
         >
 
-        <com.kylone.view.LinearLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16px"
+            android:layout_marginBottom="16dp"
             android:layout_above="@+id/loading_tv_speed"
             android:orientation="horizontal">
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/loading_tv_name_t"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:textSize="26px" />
+                android:textSize="26sp" />
 
-            <com.kylone.view.TextView
+            <TextView
                 android:id="@+id/loading_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="27px"
+                android:layout_marginLeft="27dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:textSize="26px" />
-        </com.kylone.view.LinearLayout>
-        <com.kylone.view.TextView
+                android:textSize="26sp" />
+        </LinearLayout>
+        <TextView
             android:id="@+id/loading_tv_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/loading_l_root"
-            android:layout_marginBottom="10px"
+            android:layout_marginBottom="10dp"
             android:singleLine="true"
             android:textColor="#ffffff"
-            android:textSize="20px" />
+            android:textSize="20sp" />
 
-        <com.kylone.view.RelativeLayout
+        <RelativeLayout
             android:id="@+id/loading_l_root"
             android:layout_centerHorizontal="true"
-            android:layout_width="66px"
-            android:layout_height="66px"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:layout_alignParentBottom="true">
-            <com.kylone.view.ImageView
+            <ImageView
                 android:id="@+id/loading_img_load"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -74,16 +74,16 @@
                 <!--android:layout_centerInParent="true"-->
                 <!--android:src="@drawable/loadingprogress" -->
                 <!--/>-->
-        </com.kylone.view.RelativeLayout>
-        <!--<com.kylone.view.TextView-->
+        </RelativeLayout>
+        <!--<TextView-->
             <!--android:id="@+id/loading_tv_source"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_alignParentBottom="true"-->
             <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginRight="43px"-->
+            <!--android:layout_marginRight="43dp"-->
             <!--android:singleLine="true"-->
             <!--android:textColor="#ffffff"-->
-            <!--android:textSize="12px" />-->
-    </com.kylone.view.RelativeLayout>
-</com.kylone.view.FrameLayout>
+            <!--android:textSize="12sp" />-->
+    </RelativeLayout>
+</FrameLayout>

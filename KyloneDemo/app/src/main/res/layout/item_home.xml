@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_home_sel"
     android:clipChildren="false"
     android:focusable="true">
 
-    <com.kylone.view.ImageView
+    <ImageView
         android:id="@+id/item_image"
-        android:layout_width="200px"
-        android:layout_height="190px"
+        android:layout_width="200dp"
+        android:layout_height="190dp"
         android:scaleType="fitXY"
         android:layout_centerHorizontal="true" />
 
-    <!--<com.kylone.view.TextView-->
+    <!--<TextView-->
     <!--android:id="@+id/item_title"-->
     <!--android:textColor="#ffffff"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:layout_below="@+id/item_image"-->
     <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginTop="10px"-->
+    <!--android:layout_marginTop="10dp"-->
     <!--android:gravity="center"-->
     <!--android:maxLines="1"-->
     <!--android:textStyle="bold"-->
-    <!--android:textSize="24px" />-->
-</com.kylone.view.RelativeLayout>
+    <!--android:textSize="24dp" />-->
+</RelativeLayout>

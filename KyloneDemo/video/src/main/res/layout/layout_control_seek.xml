@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kylone.view.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.kylone.view.View
+    <View
         android:id="@+id/seek_control_pause"
         android:layout_width="160px"
         android:layout_height="160px"
@@ -12,7 +12,7 @@
         android:focusable="false" />
 
 
-    <com.kylone.view.LinearLayout
+    <LinearLayout
         android:id="@+id/seek_layout"
         android:layout_width="match_parent"
         android:layout_height="100px"
@@ -22,7 +22,7 @@
         android:orientation="horizontal"
         android:paddingLeft="50px">
 
-        <com.kylone.view.View
+        <View
             android:id="@+id/seek_btn"
             android:layout_width="35px"
             android:layout_height="35px"
@@ -30,7 +30,7 @@
             android:layout_marginRight="25px"
             android:background="@mipmap/seek_btn_start" />
 
-        <com.kylone.view.SeekBar
+        <SeekBar
             android:id="@+id/seek_bar"
             style="@style/seek_bg"
             android:layout_width="0dp"
@@ -42,7 +42,7 @@
             android:paddingRight="10px"
             android:progress="0" />
 
-        <com.kylone.view.TextView
+        <TextView
             android:id="@+id/seek_time"
             android:maxLines="1"
             android:gravity="center_horizontal"
@@ -51,7 +51,7 @@
             android:textColor="#aaaaaa"
             android:textSize="18px" />
 
-        <com.kylone.view.View
+        <View
 
             android:layout_width="35px"
             android:layout_height="35px"
@@ -60,7 +60,7 @@
             android:background="@mipmap/ic_volume" />
 
 
-    </com.kylone.view.LinearLayout>
+    </LinearLayout>
 
 
-</com.kylone.view.RelativeLayout>
+</RelativeLayout>

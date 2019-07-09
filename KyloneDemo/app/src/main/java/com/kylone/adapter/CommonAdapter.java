@@ -1,7 +1,6 @@
 package com.kylone.adapter;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
@@ -30,9 +29,9 @@ import java.util.List;
  * Created by Zack on 2018/4/16
  */
 
-public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewHolder> {
+public class CommonAdapter  extends RecyclerView.Adapter<CommonAdapter.BaseMViewHolder> {
     private List<CommonInfo> mData;
-    private int id_layout = R.layout.item_home;
+    protected int id_layout = R.layout.item_home;
     private OnItemListener itemListener;
     private SparseBooleanArray selected_position = new SparseBooleanArray();
     private int scale_duration = 150;
@@ -45,14 +44,15 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
         setWeenRecyclerView(recyclerView);
     }
 
+    @NonNull
     @Override
-    public CommonAdapter.BaseMViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseMViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(id_layout, parent, false);
         return new BaseMViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(BaseMViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BaseMViewHolder holder, int position) {
         if (isSelect > 0) {
             holder.itemView.setSelected(isSelect(position));
         }
@@ -133,7 +133,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
         itemListener = listener;
     }
 
-    public void setWeenRecyclerView(RecyclerView mWeenRecyclerView) {
+    private void setWeenRecyclerView(RecyclerView mWeenRecyclerView) {
         this.mWeenRecyclerView = new WeakReference<>(mWeenRecyclerView);
     }
 
@@ -193,7 +193,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
     /**
      * 设置item变大的倍数
      *
-     * @param scale_default
+     * @param scale_default 倍数
      */
 
     public void setScaleDefault(float scale_default) {
@@ -203,7 +203,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
     /**
      * 设置item变大动画的时间
      *
-     * @param scale_duration
+     * @param scale_duration 动画的时间<单位 毫秒>
      */
     public void setScaleDuration(int scale_duration) {
         this.scale_duration = scale_duration;
@@ -302,9 +302,9 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
     }
 
     public class BaseMViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        ImageView icon;
-        ImageView image;
+        public TextView title;
+        public ImageView icon;
+        public ImageView image;
 //        OnItemListener itemListener;
 
         public BaseMViewHolder(View itemView) {
@@ -316,10 +316,12 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.BaseMViewH
             itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus) {
-                        AniUtils.aniScale(v, 1f, scale_default, scale_duration);
-                    } else {
-                        AniUtils.aniScale(v, scale_default, 1f, scale_duration);
+                    if (scale_default != 1){
+                        if (hasFocus) {
+                            AniUtils.aniScale(v, 1f, scale_default, scale_duration);
+                        } else {
+                            AniUtils.aniScale(v, scale_default, 1f, scale_duration);
+                        }
                     }
                     int position = getAdapterPosition();
                     if (itemListener != null) {

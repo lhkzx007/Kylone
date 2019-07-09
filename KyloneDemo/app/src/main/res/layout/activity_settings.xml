@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <include
+        android:id="@+id/activity_title"
+        layout="@layout/layout_activity_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_title"
+        android:orientation="horizontal">
+
+        <com.kylone.view.RecyclerView
+            android:id="@+id/settings_item"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="15dp" />
+
+        <com.kylone.view.RecyclerView
+            android:id="@+id/settings_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp" />
+
+        <TextView
+            android:id="@+id/settings_app_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:paddingTop="15dp"
+            android:textSize="22sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>
