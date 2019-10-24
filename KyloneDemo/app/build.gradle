@@ -32,7 +32,9 @@ android {
     }
     applicationVariants.all{variant ->
         variant.outputs.all{
-            outputFileName = "kylone_${defaultConfig.versionName}_${releaseTime()}.apk"
+//            outputFileName = "kylone_${defaultConfig.versionName}_${releaseTime()}.apk"
+//            outputFileName = "itelecom_${defaultConfig.versionName}_${releaseTime()}.apk"
+            outputFileName = "windnet_${defaultConfig.versionName}_${releaseTime()}.apk"
         }
     }
 }

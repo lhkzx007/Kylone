@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@mipmap/bg_welcome" />
+        android:src="@mipmap/windnet_bg" />
 
     <RelativeLayout
         android:id="@+id/layout_warning"
